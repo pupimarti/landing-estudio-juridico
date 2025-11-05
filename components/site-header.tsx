@@ -59,7 +59,7 @@ export function SiteHeader({ activeSection, onNavigate }: SiteHeaderProps) {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transform transition-all duration-500 bg-primary/60 backdrop-blur-sm ${isScrolled ? "bg-primary/50 backdrop-blur-xl shadow-md" : ""} ${navbarVisible ? "translate-y-0" : "-translate-y-full"} motion-reduce:transform-none motion-reduce:transition-none`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transform transition-all duration-500 bg-primary/60 backdrop-blur-sm ${isScrolled ? "bg-primary/50 backdrop-blur-sm shadow-md" : ""} ${navbarVisible ? "translate-y-0" : "-translate-y-full"} motion-reduce:transform-none motion-reduce:transition-none`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center gap-3">

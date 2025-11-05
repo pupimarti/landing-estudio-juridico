@@ -170,8 +170,25 @@
     animation: fadeInUp 0.8s ease-out forwards;
   }
 
-  .fade-in-up-delay-1 {
+  .fade-in-left {
+    opacity: 0;
+    transform: translateX(-28px);
+    animation: fadeInLeft 0.8s ease-out forwards;
+  }
+
+  .fade-in-left-delay-1 {
     animation-delay: 0.12s;
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   .fade-in-up-delay-2 {
@@ -195,6 +212,12 @@
     }
 
     .fade-in-up {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .fade-in-left {
       opacity: 1;
       transform: none;
       animation: none;

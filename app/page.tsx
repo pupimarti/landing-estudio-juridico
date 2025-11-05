@@ -291,16 +291,16 @@ export default function LawFirmLanding() {
       <section ref={quienesSomosRef} id="quienes-somos" className="pt-30 pb-30 px-4 sm:px-6 lg:px-8 bg-white fade-in">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-5xl mx-auto">
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-8 text-center">Quiénes somos</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-8 text-center mb-20">Quiénes somos</h2>
             <div className="space-y-20 text-muted-foreground leading-relaxed">
               <div
                 ref={(el) => {
                   bioSectionsRef.current[0] = el;
                 }}
-                className={`flex flex-col lg:flex-row items-center gap-14 ${isMobile ? "fade-in" : ""}`}
+                className={`flex flex-col lg:flex-row items-center gap-5 sm:gap-14 ${isMobile ? "fade-in" : ""}`}
               >
                 <div className="w-full max-w-xs sm:max-w-sm lg:max-w-sm flex-shrink-0">
-                  <div className="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
+                  <div className="relative overflow-hidden rounded-xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
                     <img src="/law2-r.jpg" alt="Dr. Guillermo Conti" className="absolute inset-0 w-full h-full object-cover object-center" />
                     <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
                     <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
@@ -343,10 +343,10 @@ export default function LawFirmLanding() {
                 ref={(el) => {
                   bioSectionsRef.current[1] = el;
                 }}
-                className={`flex flex-col lg:flex-row-reverse items-center gap-14 ${isMobile ? "fade-in" : ""}`}
+                className={`flex flex-col lg:flex-row-reverse items-center gap-5 sm:gap-14 ${isMobile ? "fade-in" : ""}`}
               >
                 <div className="w-full max-w-xs sm:max-w-sm lg:max-w-sm flex-shrink-0">
-                  <div className="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
+                  <div className="relative overflow-hidden rounded-xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
                     <img src="/law1-r.jpg" alt="Dr. Mariano Nasif" className="absolute inset-0 w-full h-full object-cover object-center" />
                     <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
                     <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">

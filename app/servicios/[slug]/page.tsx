@@ -71,21 +71,21 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </section>
 
         <section className="pb-16 pt-8 px-4 sm:px-6 lg:px-8 bg-background">
-          <div className="pb-6 max-w-6xl mx-auto ">
+          <div className="pb-6 max-w-6xl mx-auto fade-in-left">
             <Link href="/#servicios" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
               <ArrowLeft className="h-4 w-4" />
               Volver
             </Link>
           </div>
           <div className="max-w-6xl mx-auto grid gap-12 lg:grid-cols-[1.7fr_1fr]">
-            <article className="space-y-6 text-muted-foreground leading-relaxed text-base sm:text-lg fade-in-up">
+            <article className="space-y-6 text-muted-foreground leading-relaxed text-base sm:text-lg fade-in-left">
               <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground">Visión general del servicio</h2>
               {service.overview.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
             </article>
 
-            <aside className="space-y-6 fade-in-up fade-in-up-delay-1">
+            <aside className="space-y-6 fade-in-left fade-in-left-delay-1">
               <Card className="border-2 border-border bg-background">
                 <CardContent className="p-6 space-y-4">
                   <h3 className="font-serif text-xl font-semibold text-foreground">¿Qué resolvemos?</h3>
