@@ -245,7 +245,7 @@ export default function LawFirmLanding() {
       <SiteHeader activeSection={activeSection} onNavigate={handleNavigation} />
 
       {/* Hero Section */}
-      <section id="inicio" className={`relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[75vh] flex items-center `}>
+      <section id="inicio" className={`relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden ${isMobile ? "min-h-[75vh]" : "min-h-[85vh]"} flex items-center `}>
         <div className="absolute inset-0 -z-10">
           <img src="/a5603f_9b9a4f6c2c65443c87b9cd21b32ad319~mv2.avif" alt="" className="w-full h-full object-cover" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/70 to-primary/70" />
