@@ -107,7 +107,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
             </aside>
           </div>
 
-          <div className="max-w-6xl mx-auto mt-16 fade-in-up fade-in-up-delay-1">
+          {/* <div className="max-w-6xl mx-auto mt-16 fade-in-up fade-in-up-delay-1">
             <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground mb-8 text-center sm:text-left">Nuestra forma de trabajar</h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {service.approach.map((step) => (
@@ -119,16 +119,16 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 </Card>
               ))}
             </div>
-          </div>
+          </div> */}
 
-          <div className="max-w-4xl mx-auto mt-16 fade-in-up fade-in-up-delay-2">
+          {/* <div className="max-w-4xl mx-auto mt-16 fade-in-up fade-in-up-delay-2">
             <Card className="border-2 border-border bg-muted/40">
               <CardContent className="p-8 text-center sm:text-left space-y-4">
                 <h3 className="font-serif text-2xl font-semibold text-foreground">Un plan claro para avanzar</h3>
                 <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">{service.closing}</p>
               </CardContent>
             </Card>
-          </div>
+          </div> */}
         </section>
       </main>
 
