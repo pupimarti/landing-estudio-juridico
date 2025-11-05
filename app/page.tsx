@@ -301,7 +301,7 @@ export default function LawFirmLanding() {
               >
                 <div className="w-full max-w-xs sm:max-w-sm lg:max-w-sm flex-shrink-0">
                   <div className="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
-                    <img src="/law2.jpg" alt="Dr. Guillermo Conti" className="absolute inset-0 w-full h-full object-cover object-center" />
+                    <img src="/law2-r.jpg" alt="Dr. Guillermo Conti" className="absolute inset-0 w-full h-full object-cover object-center" />
                     <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
                     <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
                       <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Socio fundador</p>
@@ -347,7 +347,7 @@ export default function LawFirmLanding() {
               >
                 <div className="w-full max-w-xs sm:max-w-sm lg:max-w-sm flex-shrink-0">
                   <div className="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
-                    <img src="/law1.jpg" alt="Dr. Mariano Nasif" className="absolute inset-0 w-full h-full object-cover object-center" />
+                    <img src="/law1-r.jpg" alt="Dr. Mariano Nasif" className="absolute inset-0 w-full h-full object-cover object-center" />
                     <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
                     <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
                       <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Socio fundador</p>
