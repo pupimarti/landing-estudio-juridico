@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Mail, ChevronUp } from "lucide-react";
+import { Phone, Mail, ChevronUp, MessageCircle, Linkedin, Instagram, Youtube } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { services } from "@/lib/services";
@@ -281,36 +281,94 @@ export default function LawFirmLanding() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-8 text-center">Quiénes somos</h2>
-            <div className="space-y-6 text-muted-foreground leading-relaxed">
-              <p className="text-lg">Somos un estudio de abogados dinámico, enfocado en ofrecer soluciones prácticas e innovadoras a los problemas legales de hoy. Entendemos que el mundo legal está en constante cambio, y nuestro enfoque combina la experiencia tradicional con una perspectiva moderna.</p>
-              <p className="text-lg">En Estudio Conti, no solo somos sus abogados; somos sus aliados estratégicos. Nos tomamos el tiempo de entender sus objetivos, ya sean personales o empresariales, para diseñar la estrategia legal que mejor se adapte a sus necesidades.</p>
-              <p className="text-lg">Creemos en la comunicación clara, la transparencia y la eficiencia. Estamos aquí para guiarlo a través de la complejidad del sistema legal, protegiendo sus derechos y ayudándole a alcanzar sus metas.</p>
+            <div className="space-y-20 text-muted-foreground leading-relaxed">
+              <div className="flex flex-col lg:flex-row items-center gap-14">
+                <div className="w-full max-w-xs sm:max-w-sm lg:max-w-sm flex-shrink-0">
+                  <div className="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
+                    <img src="/law1.jpg" alt="Dr. Conti" className="absolute inset-0 w-full h-full object-cover object-center" />
+                    <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
+                    <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
+                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Socio fundador</p>
+                      <p className="font-serif text-2xl sm:text-3xl font-semibold mt-1 text-white">Dr. Martín Conti</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full space-y-6">
+                  <div className="space-y-2 hidden lg:block">
+                    <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Socio fundador</p>
+                    <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Martín Conti</h3>
+                  </div>
+                  <p className="text-lg">Martín lidera el área de litigios complejos del estudio. Cuenta con más de 15 años de experiencia representando a empresas y particulares en conflictos civiles y comerciales, brindando soluciones estratégicas y orientadas a resultados concretos.</p>
+                  <p className="text-lg">Su enfoque combina análisis jurídico riguroso con una comunicación clara y cercana, asegurando que cada cliente entienda el estado de su caso y las alternativas disponibles.</p>
+                  <div className="flex flex-wrap gap-3">
+                    <Button asChild variant="outline" size="sm" className="gap-2">
+                      <a href="https://wa.me/{{TELEFONO_CONTI}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dr. Martín Conti">
+                        <MessageCircle className="h-4 w-4" />
+                        WhatsApp
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline" size="sm" className="gap-2">
+                      <a href="mailto:{{EMAIL_CONTI}}" aria-label="Email Dr. Martín Conti">
+                        <Mail className="h-4 w-4" />
+                        Email
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline" size="sm" className="gap-2">
+                      <a href="https://www.youtube.com/{{YOUTUBE_CONTI}}" target="_blank" rel="noopener noreferrer" aria-label="YouTube Dr. Martín Conti">
+                        <Youtube className="h-4 w-4" />
+                        YouTube
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
 
-              {/* <div className="mt-10 grid sm:grid-cols-3 gap-6">
-                <Card className="border-2 border-border">
-                  <CardContent className="pt-6">
-                    <div className="text-accent text-2xl mb-2">⚡</div>
-                    <h3 className="font-serif font-semibold text-foreground mb-2">Respuesta rápida</h3>
-                    <p className="text-sm text-muted-foreground">Contestamos consultas en menos de 24 horas</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-2 border-border">
-                  <CardContent className="pt-6">
-                    <div className="text-accent text-2xl mb-2">💰</div>
-                    <h3 className="font-serif font-semibold text-foreground mb-2">Honorarios transparentes</h3>
-                    <p className="text-sm text-muted-foreground">Sin sorpresas ni costos ocultos</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-2 border-border">
-                  <CardContent className="pt-6">
-                    <div className="text-accent text-2xl mb-2">🤝</div>
-                    <h3 className="font-serif font-semibold text-foreground mb-2">Acompañamiento integral</h3>
-                    <p className="text-sm text-muted-foreground">Te guiamos en cada paso del proceso</p>
-                  </CardContent>
-                </Card>
-              </div> */}
+              <div className="flex flex-col lg:flex-row-reverse items-center gap-14">
+                <div className="w-full max-w-xs sm:max-w-sm lg:max-w-sm flex-shrink-0">
+                  <div className="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
+                    <img src="/law2.jpg" alt="Dra. Nasif" className="absolute inset-0 w-full h-full object-cover object-center" />
+                    <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
+                    <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
+                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Socia fundadora</p>
+                      <p className="font-serif text-2xl sm:text-3xl font-semibold mt-1 text-white">Dra. Florencia Nasif</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full space-y-6">
+                  <div className="space-y-2 hidden lg:block">
+                    <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Socia fundadora</p>
+                    <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dra. Florencia Nasif</h3>
+                  </div>
+                  <p className="text-lg">Florencia lidera las prácticas de derecho laboral y asesoramiento preventivo. Su trabajo se centra en acompañar a empresas y profesionales en la toma de decisiones estratégicas, anticipando riesgos y diseñando políticas claras que protegen tanto a empleadores como colaboradores.</p>
+                  <p className="text-lg">Su estilo combina empatía, precisión técnica y visión de negocio para construir relaciones de confianza de largo plazo.</p>
+                  <div className="flex flex-wrap gap-3">
+                    <Button asChild variant="outline" size="sm" className="gap-2">
+                      <a href="https://wa.me/{{TELEFONO_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dra. Florencia Nasif">
+                        <MessageCircle className="h-4 w-4" />
+                        WhatsApp
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline" size="sm" className="gap-2">
+                      <a href="mailto:{{EMAIL_NASIF}}" aria-label="Email Dra. Florencia Nasif">
+                        <Mail className="h-4 w-4" />
+                        Email
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline" size="sm" className="gap-2">
+                      <a href="https://www.linkedin.com/{{LINKEDIN_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Dra. Florencia Nasif">
+                        <Linkedin className="h-4 w-4" />
+                        LinkedIn
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline" size="sm" className="gap-2">
+                      <a href="https://www.instagram.com/{{INSTAGRAM_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="Instagram Dra. Florencia Nasif">
+                        <Instagram className="h-4 w-4" />
+                        Instagram
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
