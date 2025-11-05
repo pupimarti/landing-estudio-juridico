@@ -234,7 +234,7 @@ export default function LawFirmLanding() {
       </section>
 
       {/* Quiénes Somos Section */}
-      <section ref={quienesSomosRef} id="quienes-somos" className="py-20 px-4 sm:px-6 lg:px-8 bg-background fade-in">
+      <section ref={quienesSomosRef} id="quienes-somos" className="pt-30 px-4 sm:px-6 lg:px-8 bg-background fade-in">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-8 text-center">Quiénes somos</h2>
@@ -274,7 +274,7 @@ export default function LawFirmLanding() {
       </section>
 
       {/* Servicios Section */}
-      <section ref={serviciosRef} id="servicios" className={`py-20 px-4 sm:px-6 lg:px-8 bg-muted/30 ${isMobile ? "" : "fade-in"}`}>
+      <section ref={serviciosRef} id="servicios" className={`pb-20 pt-30 px-4 sm:px-6 lg:px-8 bg-muted/30 ${isMobile ? "" : "fade-in"}`}>
         <div className="max-w-7xl mx-auto">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-12 text-center">Servicios</h2>
@@ -306,7 +306,7 @@ export default function LawFirmLanding() {
       </section>
 
       {/* Contacto Section */}
-      <section ref={contactoRef} id="contacto" className="py-20 px-4 sm:px-6 lg:px-8 bg-background fade-in">
+      <section ref={contactoRef} id="contacto" className="pt-30 pb-20 px-4 sm:px-6 lg:px-8 bg-background fade-in">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-6 text-center">Contacto</h2>
