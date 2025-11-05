@@ -453,7 +453,7 @@ export default function LawFirmLanding() {
               </div>
               <div className="flex items-center justify-center gap-4 text-sm font-medium text-muted-foreground">
                 <span className="block h-px w-12 bg-border" />
-                <span>o envianos tu consulta por este formulario</span>
+                <span>o podes enviar tu consulta vía este formulario</span>
                 <span className="block h-px w-12 bg-border" />
               </div>
             </div>
