@@ -3,17 +3,19 @@
 import type React from "react";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
-import { Scale, Phone, Mail, MapPin, ChevronUp, Menu } from "lucide-react";
+import { Phone, Mail, ChevronUp } from "lucide-react";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { services } from "@/lib/services";
 
 export default function LawFirmLanding() {
   const [activeSection, setActiveSection] = useState("inicio");
-  const [isScrolled, setIsScrolled] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [formData, setFormData] = useState({
     nombre: "",
@@ -24,25 +26,17 @@ export default function LawFirmLanding() {
   });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.matchMedia("(max-width: 767px)").matches : false));
+  const router = useRouter();
 
   const quienesSomosRef = useRef<HTMLElement>(null);
   const serviciosRef = useRef<HTMLElement>(null);
   const contactoRef = useRef<HTMLElement>(null);
   const serviceCardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const navigationItems = [
-    { id: "inicio", label: "Inicio" },
-    { id: "quienes-somos", label: "Quiénes somos" },
-    { id: "servicios", label: "Servicios" },
-    { id: "contacto", label: "Contacto" },
-  ];
-
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
       setShowBackToTop(window.scrollY > 500);
 
       // Update active section based on scroll position
@@ -152,7 +146,10 @@ export default function LawFirmLanding() {
 
   const handleNavigation = (sectionId: string) => {
     scrollToSection(sectionId);
-    setIsMobileMenuOpen(false);
+  };
+
+  const handleServiceDetail = (slug: string) => {
+    router.push(`/servicios/${slug}`);
   };
 
   const validateForm = () => {
@@ -200,120 +197,15 @@ export default function LawFirmLanding() {
     }
   };
 
-  const services = [
-    {
-      title: "Derecho de Salud - Amparos",
-      description: "¿Tu obra social o prepaga te negó un tratamiento? Hacemos amparos urgentes para que accedas a lo que necesitás.",
-      emoji: "📩",
-      footer: "Atención rápida. Trato directo.",
-    },
-    {
-      title: "Derecho del Trabajador",
-      description: "¿Te despidieron o sufriste un accidente laboral? Revisamos tu caso y reclamamos lo que te corresponde.",
-      emoji: "📞",
-      footer: "Consulta sin compromiso.",
-    },
-    {
-      title: "Derecho del Consumidor - Daños",
-      description: "¿Tu obra social o prepaga te negó un tratamiento? Hacemos amparos urgentes para que accedas a lo que necesitás.",
-      emoji: "📩",
-      footer: "Atención rápida. Trato directo.",
-    },
-    {
-      title: "Derecho de Familia",
-      description: "¿Problemas con la cuota alimentaria, visitas, divorcio o tenencia? Te ayudamos a resolver situaciones familiares de forma clara, rápida y cuidando lo que más importa.",
-      emoji: "👨‍👩‍👧",
-      footer: "Trato humano. Soluciones reales.",
-    },
-    {
-      title: "Accidentes de Tránsito - Seguros",
-      description: "¿Tu aseguradora rechazó el siniestro o te pagó menos de lo que corresponde? Reclamamos frente a compañías de seguros por incumplimientos, rechazos injustificados y demoras en el pago.",
-      emoji: "⚖️",
-      footer: "Te ayudamos a hacer valer tu póliza.",
-    },
-    {
-      title: "Sucesiones y Patrimonio",
-      description: "¿Una propiedad o cuenta sigue a nombre de un familiar fallecido? Tramitamos sucesiones de forma clara, rápida y sin vueltas. También te asesoramos en la organización y protección de tu patrimonio.",
-      emoji: "📄",
-      footer: "Consultas online o presenciales.",
-    },
-    {
-      title: "Derecho Previsional",
-      description: "¿Problemas con su jubilación, pensión o el reajuste de haberes? Te ayudamos a obtener el beneficio que te merecés de forma clara, ágil y cuidando tu futuro.",
-      emoji: "👵👴",
-      footer: "Trato humano. Soluciones efectivas.",
-    },
-    {
-      title: "Derecho Privado - General",
-      description: "¿Dudas sobre un contrato, un reclamo por daños o la posesión de un inmueble? Te damos asesoramiento legal claro para tus consultas y conflictos cotidianos.",
-      emoji: "⚖️",
-      footer: "Respaldo profesional. Soluciones concretas.",
-    },
-    {
-      title: "Cobros judiciales y estrategias financieras personales",
-      description: "¿Problemas con deudas, embargos o cobros judiciales? Te ayudamos a defender tu patrimonio de forma clara, estratégica y cuidando tu tranquilidad.",
-      emoji: "🛡️",
-      footer: "Protección patrimonial. Soluciones directas.",
-    },
-  ];
-
   return (
     <div className="min-h-screen">
-      {/* Sticky Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-primary/60 backdrop-blur-sm ${isScrolled ? "bg-primary/50 backdrop-blur-xl shadow-md" : ""}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <div className="flex items-center gap-3">
-              <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-                <SheetTrigger asChild>
-                  <button type="button" className="md:hidden text-primary-foreground hover:text-accent transition-colors" aria-label="Abrir menú">
-                    <Menu className="h-7 w-7" />
-                  </button>
-                </SheetTrigger>
-                <SheetContent side="left" className="bg-primary text-primary-foreground border-r border-primary-foreground/20 px-6 py-10">
-                  <nav className="flex flex-col gap-6 text-lg font-medium" aria-label="Navegación móvil">
-                    {navigationItems.map((item) => (
-                      <button key={item.id} type="button" onClick={() => handleNavigation(item.id)} className={`text-left transition-colors ${activeSection === item.id ? "text-accent" : "text-primary-foreground/90 hover:text-accent"}`}>
-                        {item.label}
-                      </button>
-                    ))}
-                    <Button size="lg" onClick={() => handleNavigation("contacto")} className="bg-accent text-accent-foreground hover:bg-accent/90">
-                      Solicitar consulta
-                    </Button>
-                  </nav>
-                </SheetContent>
-              </Sheet>
-
-              {/* Logo */}
-              <button onClick={() => handleNavigation("inicio")} className="flex items-center gap-2 text-primary-foreground hover:opacity-80 transition-opacity" aria-label="Ir a inicio">
-                <Scale className="h-8 w-8" />
-                <span className="font-serif text-xl font-bold hidden sm:inline">{"{{NOMBRE_ESTUDIO}}"}</span>
-              </button>
-            </div>
-
-            {/* Navigation */}
-            <nav className="hidden md:flex items-center gap-8" aria-label="Navegación principal">
-              {navigationItems.map((item) => (
-                <button key={item.id} onClick={() => handleNavigation(item.id)} className={`text-sm font-medium transition-colors relative ${activeSection === item.id ? "text-accent" : "text-primary-foreground hover:text-accent"}`} aria-current={activeSection === item.id ? "page" : undefined}>
-                  {item.label}
-                  {activeSection === item.id && <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent" />}
-                </button>
-              ))}
-            </nav>
-
-            {/* CTA Button */}
-            <Button onClick={() => handleNavigation("contacto")} className="bg-accent text-accent-foreground hover:bg-accent/90">
-              Solicitar consulta
-            </Button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader activeSection={activeSection} onNavigate={handleNavigation} />
 
       {/* Hero Section */}
-      <section id="inicio" className={`relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[85vh] flex items-center fade-in ${heroVisible ? "fade-in-visible" : ""}`}>
+      <section id="inicio" className={`relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[85vh] flex items-center `}>
         <div className="absolute inset-0 -z-10">
           <img src="/a5603f_9b9a4f6c2c65443c87b9cd21b32ad319~mv2.avif" alt="" className="w-full h-full object-cover" loading="eager" />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/65 to-primary/55" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/70 to-primary/70" />
         </div>
 
         <div
@@ -323,9 +215,13 @@ export default function LawFirmLanding() {
           }}
         >
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 text-balance">{"{{NOMBRE_ESTUDIO}}"}</h1>
-            <p className="text-lg sm:text-xl text-primary-foreground/90 mb-10 text-pretty leading-relaxed">Protegemos tus intereses con soluciones concretas y trato humano.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <h1 className={`font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 text-balance fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.1s" }}>
+              {"{{NOMBRE_ESTUDIO}}"}
+            </h1>
+            <p className={`text-lg sm:text-xl text-primary-foreground/90 mb-10 text-pretty leading-relaxed fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.25s" }}>
+              Protegemos tus intereses con soluciones concretas y trato humano.
+            </p>
+            <div className={`flex flex-col sm:flex-row gap-4 justify-center fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.4s" }}>
               <Button size="lg" onClick={() => scrollToSection("contacto")} className="bg-accent text-accent-foreground hover:bg-accent/90 text-base">
                 Solicitar consulta
               </Button>
@@ -386,20 +282,19 @@ export default function LawFirmLanding() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {services.map((service, index) => (
                 <div
-                  key={index}
+                  key={service.slug}
                   ref={(el) => {
                     serviceCardsRef.current[index] = el;
                   }}
                   className={`group h-full ${isMobile ? "fade-in" : ""}`}
                 >
-                  <Card className="border-2 border-border hover:border-accent transition-colors duration-150 group h-full">
+                  <Card className={`border-2 border-border hover:border-accent transition-colors duration-150 group h-full`}>
                     <CardContent className="pt-6 flex flex-col h-full">
-                      {/*  <div className="text-3xl mb-4">{service.emoji}</div> */}
                       <h3 className="font-serif text-xl font-semibold text-foreground mb-3 group-hover:text-accent transition-colors">{service.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed mb-4 flex-grow text-sm">{service.description}</p>
+                      <p className="text-muted-foreground leading-relaxed mb-4 flex-grow text-sm">{service.shortDescription}</p>
                       <p className="text-sm font-medium text-accent mb-4">{service.footer}</p>
-                      <Button variant="outline" size="sm" onClick={() => scrollToSection("contacto")} className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-                        Solicitar consulta
+                      <Button variant="outline" size="sm" onClick={() => handleServiceDetail(service.slug)} className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground">
+                        Más información
                       </Button>
                     </CardContent>
                   </Card>
@@ -522,89 +417,7 @@ export default function LawFirmLanding() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Scale className="h-6 w-6" />
-                <span className="font-serif text-lg font-bold">{"{{NOMBRE_ESTUDIO}}"}</span>
-              </div>
-              <p className="text-sm text-primary-foreground/80 leading-relaxed">Asesoría legal clara y estratégica para proteger tus intereses.</p>
-            </div>
-
-            <div>
-              <h3 className="font-serif font-semibold mb-4">Enlaces</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <button onClick={() => scrollToSection("inicio")} className="text-primary-foreground/80 hover:text-accent transition-colors">
-                    Inicio
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection("quienes-somos")} className="text-primary-foreground/80 hover:text-accent transition-colors">
-                    Quiénes somos
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection("servicios")} className="text-primary-foreground/80 hover:text-accent transition-colors">
-                    Servicios
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection("contacto")} className="text-primary-foreground/80 hover:text-accent transition-colors">
-                    Contacto
-                  </button>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-serif font-semibold mb-4">Legal</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                    Aviso legal
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                    Política de privacidad
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                    Términos y condiciones
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-serif font-semibold mb-4">Síguenos</h3>
-              <div className="flex gap-4">
-                <a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors" aria-label="LinkedIn">
-                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                  </svg>
-                </a>
-                <a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors" aria-label="Instagram">
-                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-primary-foreground/20 pt-8 text-center text-sm text-primary-foreground/80">
-            <p>
-              © {new Date().getFullYear()} {"{{NOMBRE_ESTUDIO}}"}. Todos los derechos reservados.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter onNavigate={handleNavigation} />
 
       {/* WhatsApp Floating Button */}
       <a href="https://wa.me/{{TELEFONO}}" target="_blank" rel="noopener noreferrer" className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#20BA5A] transition-colors z-40" aria-label="Abrir WhatsApp">
