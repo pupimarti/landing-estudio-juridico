@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { services, servicesMap } from "@/lib/services";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 
 type ServicePageParams = {
   slug: string;
@@ -66,16 +66,20 @@ export default async function ServicePage({ params }: ServicePageProps) {
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
                 <Link href="/#contacto">Solicitar consulta</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-2 border-primary-foreground text-primary hover:bg-primary-foreground hover:text-primary">
-                <Link href="/#servicios">Volver a servicios</Link>
-              </Button>
             </div>
           </div>
         </section>
 
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background">
+        <section className="pb-16 pt-8 px-4 sm:px-6 lg:px-8 bg-background">
+          <div className="pb-6 max-w-6xl mx-auto ">
+            <Link href="/#servicios" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+              <ArrowLeft className="h-4 w-4" />
+              Volver
+            </Link>
+          </div>
           <div className="max-w-6xl mx-auto grid gap-12 lg:grid-cols-[1.7fr_1fr]">
             <article className="space-y-6 text-muted-foreground leading-relaxed text-base sm:text-lg fade-in-up">
+              <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground">Visión general del servicio</h2>
               {service.overview.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
@@ -87,8 +91,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   <h3 className="font-serif text-xl font-semibold text-foreground">¿Qué resolvemos?</h3>
                   <ul className="space-y-3 text-sm text-muted-foreground">
                     {service.highlights.map((item) => (
-                      <li key={item} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-accent mt-0.5" />
+                      <li key={item} className="flex items-center gap-3">
+                        <div>
+                          <CheckCircle2 className="h-4 w-4 text-accent" />
+                        </div>
                         <span>{item}</span>
                       </li>
                     ))}
