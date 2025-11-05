@@ -27,7 +27,7 @@ export function SiteFooter({ onNavigate }: SiteFooterProps) {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Scale className="h-6 w-6" />
-              <span className="font-serif text-lg font-bold">{"{{NOMBRE_ESTUDIO}}"}</span>
+              <span className="font-serif text-lg font-bold">{"Estudio Conti & Nasif"}</span>
             </div>
             <p className="text-sm text-primary-foreground/80 leading-relaxed">Asesoría legal clara y estratégica para proteger tus intereses.</p>
           </div>
@@ -85,7 +85,7 @@ export function SiteFooter({ onNavigate }: SiteFooterProps) {
 
         <div className="border-t border-primary-foreground/20 pt-8 text-center text-sm text-primary-foreground/80">
           <p>
-            © {new Date().getFullYear()} {"{{NOMBRE_ESTUDIO}}"}. Todos los derechos reservados.
+            © {new Date().getFullYear()} {"Estudio Conti & Nasif"}. Todos los derechos reservados.
           </p>
         </div>
       </div>

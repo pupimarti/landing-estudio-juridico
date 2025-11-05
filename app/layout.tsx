@@ -18,12 +18,12 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  title: "{{NOMBRE_ESTUDIO}}",
+  title: "Estudio Conti & Nasif",
   description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más. Protegemos tus intereses con soluciones concretas y trato humano en {{CIUDAD/REGIÓN}}.",
   keywords: "abogado, estudio jurídico, asesoría legal, derecho de salud, amparos, derecho laboral, derecho del consumidor, derecho de familia, {{CIUDAD/REGIÓN}}",
-  authors: [{ name: "{{NOMBRE_ESTUDIO}}" }],
-  creator: "{{NOMBRE_ESTUDIO}}",
-  publisher: "{{NOMBRE_ESTUDIO}}",
+  authors: [{ name: "Estudio Conti & Nasif" }],
+  creator: "Estudio Conti & Nasif",
+  publisher: "Estudio Conti & Nasif",
   formatDetection: {
     email: false,
     address: false,
@@ -33,15 +33,15 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "{{NOMBRE_ESTUDIO}}",
+    title: "Estudio Conti & Nasif",
     description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más. Protegemos tus intereses con soluciones concretas y trato humano.",
-    siteName: "{{NOMBRE_ESTUDIO}}",
+    siteName: "Estudio Conti & Nasif",
     locale: "es_AR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "{{NOMBRE_ESTUDIO}}",
+    title: "Estudio Conti & Nasif",
     description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más.",
   },
   robots: {
@@ -66,7 +66,7 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LegalService",
-    name: "{{NOMBRE_ESTUDIO}}",
+    name: "Estudio Conti & Nasif",
     description: "Estudio jurídico especializado en asesoría legal clara y estratégica",
     telephone: "{{TELEFONO}}",
     email: "{{EMAIL_ESTUDIO}}",

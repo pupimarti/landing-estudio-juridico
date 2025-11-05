@@ -28,12 +28,12 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 
   if (!service) {
     return {
-      title: "Servicio no encontrado | {{NOMBRE_ESTUDIO}}",
+      title: "Servicio no encontrado | Estudio Conti & Nasif",
     };
   }
 
   return {
-    title: `${service.title} | {{NOMBRE_ESTUDIO}}`,
+    title: `${service.title} | Estudio Conti & Nasif`,
     description: service.metaDescription,
   };
 }

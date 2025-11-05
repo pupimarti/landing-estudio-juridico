@@ -259,7 +259,7 @@ export default function LawFirmLanding() {
         >
           <div className="max-w-4xl mx-auto text-center">
             <h1 className={`font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 text-balance fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.1s" }}>
-              {"{{NOMBRE_ESTUDIO}}"}
+              {"Estudio Conti & Nasif"}
             </h1>
             <p className={`text-lg sm:text-xl text-primary-foreground/90 mb-10 text-pretty leading-relaxed fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.25s" }}>
               Protegemos tus intereses con soluciones concretas y trato humano.

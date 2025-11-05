@@ -1,6 +1,6 @@
 {
-  "name": "{{NOMBRE_ESTUDIO}}",
-  "short_name": "{{NOMBRE_ESTUDIO}}",
+  "name": "Estudio Conti & Nasif",
+  "short_name": "Estudio Conti & Nasif",
   "description": "Estudio jurídico especializado en asesoría legal clara y estratégica",
   "start_url": "/",
   "display": "standalone",

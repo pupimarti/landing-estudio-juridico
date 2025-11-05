@@ -19,14 +19,24 @@ interface SiteHeaderProps {
   onNavigate?: (sectionId: string) => void;
 }
 
+let navbarAnimationPlayed = false;
+
 export function SiteHeader({ activeSection, onNavigate }: SiteHeaderProps) {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [navbarVisible, setNavbarVisible] = useState(false);
+  const [navbarVisible, setNavbarVisible] = useState(() => navbarAnimationPlayed);
 
   useEffect(() => {
-    const frame = requestAnimationFrame(() => setNavbarVisible(true));
+    if (navbarAnimationPlayed) {
+      return;
+    }
+
+    const frame = requestAnimationFrame(() => {
+      navbarAnimationPlayed = true;
+      setNavbarVisible(true);
+    });
+
     return () => cancelAnimationFrame(frame);
   }, []);
 
@@ -75,7 +85,7 @@ export function SiteHeader({ activeSection, onNavigate }: SiteHeaderProps) {
 
             <button onClick={() => handleNavigation("inicio")} className="flex items-center gap-2 text-primary-foreground hover:opacity-80 transition-opacity" aria-label="Ir a inicio">
               <Scale className="h-8 w-8" />
-              <span className="font-serif text-xl font-bold ">{"{{NOMBRE_ESTUDIO}}"}</span>
+              <span className="font-serif text-xl font-bold ">{"Estudio Conti & Nasif"}</span>
             </button>
           </div>
 
