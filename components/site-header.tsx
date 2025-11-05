@@ -50,11 +50,8 @@ export function SiteHeader({ activeSection, onNavigate }: SiteHeaderProps) {
   }, []);
 
   const handleNavigation = (sectionId: string) => {
-    if (onNavigate) {
-      onNavigate(sectionId);
-    } else {
-      router.push(`/#${sectionId}`);
-    }
+    router.push(`/#${sectionId}`);
+
     setIsMobileMenuOpen(false);
   };
 
