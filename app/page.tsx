@@ -27,7 +27,8 @@ export default function LawFirmLanding() {
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
   const [heroVisible, setHeroVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.matchMedia("(max-width: 767px)").matches : false));
+  const [isMobile, setIsMobile] = useState(false);
+  const [loadingIsMobile, setLoadingIsMobile] = useState(true);
   const router = useRouter();
 
   const quienesSomosRef = useRef<HTMLElement>(null);
@@ -74,22 +75,28 @@ export default function LawFirmLanding() {
   }, []);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const mediaQuery = window.matchMedia("(max-width: 767px)");
-    setIsMobile(mediaQuery.matches);
-
-    const handleChange = (event: MediaQueryListEvent) => {
-      setIsMobile(event.matches);
-    };
-
-    if (typeof mediaQuery.addEventListener === "function") {
-      mediaQuery.addEventListener("change", handleChange);
-      return () => mediaQuery.removeEventListener("change", handleChange);
+    // Only run on client-side
+    if (typeof window === "undefined") {
+      return;
     }
 
-    mediaQuery.addListener(handleChange);
-    return () => mediaQuery.removeListener(handleChange);
+    const checkIfMobile = () => {
+      // Using 767px as the breakpoint for mobile
+      const isMobileView = window.innerWidth <= 767;
+      setIsMobile(isMobileView);
+      setLoadingIsMobile(false);
+    };
+
+    // Initial check
+    checkIfMobile();
+
+    // Add resize event listener
+    window.addEventListener("resize", checkIfMobile);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", checkIfMobile);
+    };
   }, []);
 
   useEffect(() => {
@@ -255,7 +262,7 @@ export default function LawFirmLanding() {
       <SiteHeader activeSection={activeSection} onNavigate={handleNavigation} />
 
       {/* Hero Section */}
-      <section id="inicio" className={`relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden ${isMobile ? "min-h-[75vh]" : "min-h-[85vh]"} flex items-center `}>
+      <section id="inicio" className={`relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden ${loadingIsMobile ? "hidden" : ""}  ${isMobile ? "min-h-[75vh]" : "min-h-[85vh]"} flex items-center `}>
         <div className="absolute inset-0 -z-10">
           <img src="/a5603f_9b9a4f6c2c65443c87b9cd21b32ad319~mv2.avif" alt="" className="w-full h-full object-cover" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/70 to-primary/70" />
