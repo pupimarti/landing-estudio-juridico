@@ -33,6 +33,7 @@ export default function LawFirmLanding() {
   const quienesSomosRef = useRef<HTMLElement>(null);
   const serviciosRef = useRef<HTMLElement>(null);
   const contactoRef = useRef<HTMLElement>(null);
+  const bioSectionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const serviceCardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const originalScrollBehaviorRef = useRef<string | null>(null);
 
@@ -119,26 +120,35 @@ export default function LawFirmLanding() {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
+    const createRevealObserver = (options: IntersectionObserverInit) =>
+      new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("fade-in-visible");
             observer.unobserve(entry.target);
           }
         });
-      },
-      { threshold: 0.25, rootMargin: "0px 0px -80px 0px" }
-    );
+      }, options);
 
-    serviceCardsRef.current.forEach((card) => {
-      if (card) {
-        card.classList.remove("fade-in-visible");
-        observer.observe(card);
-      }
-    });
+    const bioObserver = createRevealObserver({ threshold: 0.45, rootMargin: "0px 0px -35% 0px" });
+    const serviceObserver = createRevealObserver({ threshold: 0.3, rootMargin: "0px 0px -20% 0px" });
 
-    return () => observer.disconnect();
+    const observeElements = (elements: (HTMLElement | null)[], observer: IntersectionObserver) => {
+      elements.forEach((element) => {
+        if (element) {
+          element.classList.remove("fade-in-visible");
+          observer.observe(element);
+        }
+      });
+    };
+
+    observeElements(bioSectionsRef.current, bioObserver);
+    observeElements(serviceCardsRef.current, serviceObserver);
+
+    return () => {
+      bioObserver.disconnect();
+      serviceObserver.disconnect();
+    };
   }, [isMobile]);
 
   const smoothScrollTo = (targetY: number, duration = 500) => {
@@ -283,39 +293,44 @@ export default function LawFirmLanding() {
           <div className="max-w-5xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-8 text-center">Quiénes somos</h2>
             <div className="space-y-20 text-muted-foreground leading-relaxed">
-              <div className="flex flex-col lg:flex-row items-center gap-14">
+              <div
+                ref={(el) => {
+                  bioSectionsRef.current[0] = el;
+                }}
+                className={`flex flex-col lg:flex-row items-center gap-14 ${isMobile ? "fade-in" : ""}`}
+              >
                 <div className="w-full max-w-xs sm:max-w-sm lg:max-w-sm flex-shrink-0">
                   <div className="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
-                    <img src="/law1.jpg" alt="Dr. Conti" className="absolute inset-0 w-full h-full object-cover object-center" />
+                    <img src="/law1.jpg" alt="Dr. Guillermo Conti" className="absolute inset-0 w-full h-full object-cover object-center" />
                     <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
                     <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
                       <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Socio fundador</p>
-                      <p className="font-serif text-2xl sm:text-3xl font-semibold mt-1 text-white">Dr. Martín Conti</p>
+                      <p className="font-serif text-2xl sm:text-3xl font-semibold mt-1 text-white">Dr. Guillermo Conti</p>
                     </div>
                   </div>
                 </div>
                 <div className="w-full space-y-6">
                   <div className="space-y-2 hidden lg:block">
                     <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Socio fundador</p>
-                    <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Martín Conti</h3>
+                    <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Guillermo Conti</h3>
                   </div>
-                  <p className="text-lg">Martín lidera el área de litigios complejos del estudio. Cuenta con más de 15 años de experiencia representando a empresas y particulares en conflictos civiles y comerciales, brindando soluciones estratégicas y orientadas a resultados concretos.</p>
-                  <p className="text-lg">Su enfoque combina análisis jurídico riguroso con una comunicación clara y cercana, asegurando que cada cliente entienda el estado de su caso y las alternativas disponibles.</p>
+                  <p className="text-base sm:text-lg">Guillermo lidera el área de litigios complejos del estudio. Cuenta con más de 15 años de experiencia representando a empresas y particulares en conflictos civiles y comerciales, brindando soluciones estratégicas y orientadas a resultados concretos.</p>
+                  <p className="text-base sm:text-lg">Su enfoque combina análisis jurídico riguroso con una comunicación clara y cercana, asegurando que cada cliente entienda el estado de su caso y las alternativas disponibles.</p>
                   <div className="flex flex-wrap gap-3">
                     <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="https://wa.me/{{TELEFONO_CONTI}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dr. Martín Conti">
+                      <a href="https://wa.me/{{TELEFONO_CONTI}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dr. Guillermo Conti">
                         <MessageCircle className="h-4 w-4" />
                         WhatsApp
                       </a>
                     </Button>
                     <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="mailto:{{EMAIL_CONTI}}" aria-label="Email Dr. Martín Conti">
+                      <a href="mailto:{{EMAIL_CONTI}}" aria-label="Email Dr. Guillermo Conti">
                         <Mail className="h-4 w-4" />
                         Email
                       </a>
                     </Button>
                     <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="https://www.youtube.com/{{YOUTUBE_CONTI}}" target="_blank" rel="noopener noreferrer" aria-label="YouTube Dr. Martín Conti">
+                      <a href="https://www.youtube.com/{{YOUTUBE_CONTI}}" target="_blank" rel="noopener noreferrer" aria-label="YouTube Dr. Guillermo Conti">
                         <Youtube className="h-4 w-4" />
                         YouTube
                       </a>
@@ -324,45 +339,50 @@ export default function LawFirmLanding() {
                 </div>
               </div>
 
-              <div className="flex flex-col lg:flex-row-reverse items-center gap-14">
+              <div
+                ref={(el) => {
+                  bioSectionsRef.current[1] = el;
+                }}
+                className={`flex flex-col lg:flex-row-reverse items-center gap-14 ${isMobile ? "fade-in" : ""}`}
+              >
                 <div className="w-full max-w-xs sm:max-w-sm lg:max-w-sm flex-shrink-0">
                   <div className="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
-                    <img src="/law2.jpg" alt="Dra. Nasif" className="absolute inset-0 w-full h-full object-cover object-center" />
+                    <img src="/law2.jpg" alt="Dr. Mariano Nasif" className="absolute inset-0 w-full h-full object-cover object-center" />
                     <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
                     <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
-                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Socia fundadora</p>
-                      <p className="font-serif text-2xl sm:text-3xl font-semibold mt-1 text-white">Dra. Florencia Nasif</p>
+                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Socio fundador</p>
+                      <p className="font-serif text-2xl sm:text-3xl font-semibold mt-1 text-white">Dr. Mariano Nasif</p>
                     </div>
                   </div>
                 </div>
                 <div className="w-full space-y-6">
                   <div className="space-y-2 hidden lg:block">
-                    <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Socia fundadora</p>
-                    <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dra. Florencia Nasif</h3>
+                    <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Socio fundador</p>
+                    <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Mariano Nasif</h3>
                   </div>
-                  <p className="text-lg">Florencia lidera las prácticas de derecho laboral y asesoramiento preventivo. Su trabajo se centra en acompañar a empresas y profesionales en la toma de decisiones estratégicas, anticipando riesgos y diseñando políticas claras que protegen tanto a empleadores como colaboradores.</p>
-                  <p className="text-lg">Su estilo combina empatía, precisión técnica y visión de negocio para construir relaciones de confianza de largo plazo.</p>
+                  <p className="text-base sm:text-lg">Mariano lidera las prácticas de derecho laboral y asesoramiento preventivo. Su trabajo se centra en acompañar a empresas y profesionales en la toma de decisiones estratégicas, anticipando riesgos y diseñando políticas claras que protegen tanto a empleadores como colaboradores.</p>
+                  <p className="text-base sm:text-lg">Su estilo combina empatía, precisión técnica y visión de negocio para construir relaciones de confianza de largo plazo.</p>
                   <div className="flex flex-wrap gap-3">
                     <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="https://wa.me/{{TELEFONO_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dra. Florencia Nasif">
+                      <a href="https://wa.me/{{TELEFONO_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dr. Mariano Nasif">
                         <MessageCircle className="h-4 w-4" />
                         WhatsApp
                       </a>
                     </Button>
                     <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="mailto:{{EMAIL_NASIF}}" aria-label="Email Dra. Florencia Nasif">
+                      <a href="mailto:{{EMAIL_NASIF}}" aria-label="Email Dr. Mariano Nasif">
                         <Mail className="h-4 w-4" />
                         Email
                       </a>
                     </Button>
                     <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="https://www.linkedin.com/{{LINKEDIN_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Dra. Florencia Nasif">
+                      <a href="https://www.linkedin.com/{{LINKEDIN_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Dr. Mariano Nasif">
                         <Linkedin className="h-4 w-4" />
                         LinkedIn
                       </a>
                     </Button>
                     <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="https://www.instagram.com/{{INSTAGRAM_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="Instagram Dra. Florencia Nasif">
+                      <a href="https://www.instagram.com/{{INSTAGRAM_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="Instagram Dr. Mariano Nasif">
                         <Instagram className="h-4 w-4" />
                         Instagram
                       </a>
