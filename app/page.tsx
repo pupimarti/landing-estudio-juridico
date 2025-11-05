@@ -34,6 +34,17 @@ export default function LawFirmLanding() {
   const serviciosRef = useRef<HTMLElement>(null);
   const contactoRef = useRef<HTMLElement>(null);
   const serviceCardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const originalScrollBehaviorRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (typeof document === "undefined") return;
+      if (originalScrollBehaviorRef.current !== null) {
+        document.documentElement.style.scrollBehavior = originalScrollBehaviorRef.current;
+        originalScrollBehaviorRef.current = null;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,6 +141,34 @@ export default function LawFirmLanding() {
     return () => observer.disconnect();
   }, [isMobile]);
 
+  const smoothScrollTo = (targetY: number, duration = 500) => {
+    if (typeof window === "undefined") return;
+
+    const startY = window.pageYOffset;
+    const distance = targetY - startY;
+    let startTime: number | null = null;
+
+    const easeInOutQuad = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+
+    const step = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const easedProgress = easeInOutQuad(progress);
+
+      window.scrollTo({
+        top: startY + distance * easedProgress,
+        left: 0,
+      });
+
+      if (timeElapsed < duration) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -137,10 +176,7 @@ export default function LawFirmLanding() {
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+      smoothScrollTo(offsetPosition);
     }
   };
 
@@ -149,6 +185,13 @@ export default function LawFirmLanding() {
   };
 
   const handleServiceDetail = (slug: string) => {
+    if (typeof document !== "undefined") {
+      const html = document.documentElement;
+      if (originalScrollBehaviorRef.current === null) {
+        originalScrollBehaviorRef.current = html.style.scrollBehavior;
+      }
+      html.style.scrollBehavior = "auto";
+    }
     router.push(`/servicios/${slug}`);
   };
 

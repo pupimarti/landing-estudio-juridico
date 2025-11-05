@@ -57,12 +57,12 @@ export default async function ServicePage({ params }: ServicePageProps) {
             <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/75 to-primary/60" />
           </div>
 
-          <div className="max-w-5xl mx-auto text-center text-primary-foreground space-y-6 ">
-            <span className="uppercase tracking-[0.3em] text-xs sm:text-sm text-primary-foreground/80">Servicio legal</span>
-            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-balance">{service.title}</h1>
-            <p className="text-lg sm:text-xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto">{service.heroDescription}</p>
+          <div className="max-w-5xl mx-auto text-center text-primary-foreground space-y-6">
+            <span className="uppercase tracking-[0.3em] text-xs sm:text-sm text-primary-foreground/80 fade-in-up">Servicio legal</span>
+            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-balance fade-in-up fade-in-up-delay-1">{service.title}</h1>
+            <p className="text-lg sm:text-xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto fade-in-up fade-in-up-delay-2">{service.heroDescription}</p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up fade-in-up-delay-3">
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
                 <Link href="/#contacto">Solicitar consulta</Link>
               </Button>
@@ -75,13 +75,13 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background">
           <div className="max-w-6xl mx-auto grid gap-12 lg:grid-cols-[1.7fr_1fr]">
-            <article className="space-y-6 text-muted-foreground leading-relaxed text-base sm:text-lg">
+            <article className="space-y-6 text-muted-foreground leading-relaxed text-base sm:text-lg fade-in-up">
               {service.overview.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
             </article>
 
-            <aside className="space-y-6">
+            <aside className="space-y-6 fade-in-up fade-in-up-delay-1">
               <Card className="border-2 border-border bg-background">
                 <CardContent className="p-6 space-y-4">
                   <h3 className="font-serif text-xl font-semibold text-foreground">¿Qué resolvemos?</h3>
@@ -107,11 +107,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
             </aside>
           </div>
 
-          <div className="max-w-6xl mx-auto mt-16">
+          <div className="max-w-6xl mx-auto mt-16 fade-in-up fade-in-up-delay-1">
             <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground mb-8 text-center sm:text-left">Nuestra forma de trabajar</h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {service.approach.map((step) => (
-                <Card key={step.title} className="border-2 border-border h-full">
+                <Card key={step.title} className="border-2 border-border h-full fade-in-up">
                   <CardContent className="p-6 space-y-3">
                     <h3 className="font-serif text-xl font-semibold text-foreground">{step.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
@@ -121,7 +121,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
             </div>
           </div>
 
-          <div className="max-w-4xl mx-auto mt-16">
+          <div className="max-w-4xl mx-auto mt-16 fade-in-up fade-in-up-delay-2">
             <Card className="border-2 border-border bg-muted/40">
               <CardContent className="p-8 text-center sm:text-left space-y-4">
                 <h3 className="font-serif text-2xl font-semibold text-foreground">Un plan claro para avanzar</h3>
