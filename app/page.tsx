@@ -137,8 +137,8 @@ export default function LawFirmLanding() {
         });
       }, options);
 
-    const bioObserver = createRevealObserver({ threshold: 0.45, rootMargin: "0px 0px -35% 0px" });
-    const serviceObserver = createRevealObserver({ threshold: 0.3, rootMargin: "0px 0px -20% 0px" });
+    const bioObserver = createRevealObserver({ threshold: 0.45, rootMargin: "0px 0px 3% 0px" });
+    const serviceObserver = createRevealObserver({ threshold: 0.3, rootMargin: "0px 0px 3% 0px" });
 
     const observeElements = (elements: (HTMLElement | null)[], observer: IntersectionObserver) => {
       elements.forEach((element) => {
