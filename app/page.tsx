@@ -262,7 +262,7 @@ export default function LawFirmLanding() {
               {"Estudio Conti & Nasif"}
             </h1>
             <p className={`text-lg sm:text-xl text-primary-foreground/90 mb-10 text-pretty leading-relaxed fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.25s" }}>
-              Protegemos tus intereses con soluciones concretas y trato humano.
+              Nos apasiona brindar soluciones estratégicas y personalizadas a cada uno de nuestros clientes. Con experiencia y compromiso, trabajamos para ofrecer un servicio de calidad, basado en la confianza y la excelencia. ¡Estamos acá para ayudarte!
             </p>
             <div className={`flex flex-col sm:flex-row gap-4 justify-center fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.4s" }}>
               <Button size="lg" onClick={() => scrollToSection("contacto")} className="bg-accent text-accent-foreground hover:bg-accent/90 text-base">
@@ -389,7 +389,7 @@ export default function LawFirmLanding() {
                   }}
                   className={`group h-full ${isMobile ? "fade-in" : ""}`}
                 >
-                  <Card className={`border-2 border-border hover:border-accent transition-colors duration-150 group h-full`}>
+                  <Card className={`border border-border/60 bg-white shadow-lg hover:shadow-xl hover:border-accent transition-all duration-200 group h-full`}>
                     <CardContent className="pt-6 flex flex-col h-full">
                       <h3 className="font-serif text-xl font-semibold text-foreground mb-3 group-hover:text-accent transition-colors">{service.title}</h3>
                       <p className="text-muted-foreground leading-relaxed mb-4 flex-grow text-sm">{service.shortDescription}</p>
