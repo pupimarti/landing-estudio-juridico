@@ -187,8 +187,7 @@ export default function LawFirmLanding() {
   };
 
   const scrollToSection = (sectionId: string) => {
-    router.push(`/#${sectionId}`);
-    /* 
+    router.replace(`/#${sectionId}`);
     const element = document.getElementById(sectionId);
     if (element) {
       const offset = 0;
@@ -196,11 +195,11 @@ export default function LawFirmLanding() {
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
       smoothScrollTo(offsetPosition);
-    } */
+    }
   };
 
   const handleNavigation = (sectionId: string) => {
-    router.push(`/#${sectionId}`);
+    scrollToSection(sectionId);
   };
 
   const handleServiceDetail = (slug: string) => {
