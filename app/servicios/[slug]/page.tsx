@@ -85,7 +85,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
               ))}
             </article>
 
-            <aside className="space-y-6 fade-in-left fade-in-left-delay-1">
+            <aside className="space-y-6 fade-in-right fade-in-right-delay-1">
               <Card className="border-2 border-border bg-background">
                 <CardContent className="p-6 space-y-4">
                   <h3 className="font-serif text-xl font-semibold text-foreground">¿Qué resolvemos?</h3>
@@ -102,7 +102,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 </CardContent>
               </Card>
 
-              <Card className="border border-dashed border-accent/50 bg-accent/10">
+              <Card className="border border-dashed border-accent/50 bg-accent/10 fade-in-right fade-in-right-delay-2">
                 <CardContent className="p-6 space-y-4">
                   <p className="text-sm text-muted-foreground leading-relaxed">Coordinemos una consulta personalizada y empecemos a trabajar en tu caso hoy mismo.</p>
                   <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">

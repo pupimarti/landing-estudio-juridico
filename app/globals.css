@@ -176,7 +176,17 @@
     animation: fadeInLeft 0.8s ease-out forwards;
   }
 
+  .fade-in-right {
+    opacity: 0;
+    transform: translateX(28px);
+    animation: fadeInRight 0.8s ease-out forwards;
+  }
+
   .fade-in-left-delay-1 {
+    animation-delay: 0.12s;
+  }
+
+  .fade-in-right-delay-1 {
     animation-delay: 0.12s;
   }
 
@@ -193,6 +203,17 @@
 
   .fade-in-up-delay-2 {
     animation-delay: 0.24s;
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   .fade-in-up-delay-3 {
@@ -218,6 +239,12 @@
     }
 
     .fade-in-left {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .fade-in-right {
       opacity: 1;
       transform: none;
       animation: none;
