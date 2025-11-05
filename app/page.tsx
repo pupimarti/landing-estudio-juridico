@@ -260,7 +260,7 @@ export default function LawFirmLanding() {
   return (
     <div className="min-h-screen">
       {/* Sticky Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-primary/70 backdrop-blur-sm ${isScrolled ? "bg-primary/40 backdrop-blur-sm shadow-md" : ""}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-primary/60 backdrop-blur-sm ${isScrolled ? "bg-primary/50 backdrop-blur-xl shadow-md" : ""}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center gap-3">
@@ -323,7 +323,7 @@ export default function LawFirmLanding() {
           }}
         >
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 text-balance">{"{{NOMBRE_ESTUDIO}}"} — Asesoría legal clara y estratégica</h1>
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 text-balance">{"{{NOMBRE_ESTUDIO}}"}</h1>
             <p className="text-lg sm:text-xl text-primary-foreground/90 mb-10 text-pretty leading-relaxed">Protegemos tus intereses con soluciones concretas y trato humano.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" onClick={() => scrollToSection("contacto")} className="bg-accent text-accent-foreground hover:bg-accent/90 text-base">
