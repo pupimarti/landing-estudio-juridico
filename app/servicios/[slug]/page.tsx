@@ -53,7 +53,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <main className="flex-1">
         <section className="relative overflow-hidden pt-32 pb-20 px-4 sm:px-6 lg:px-8">
           <div className="absolute inset-0 -z-10">
-            <img src="/a5603f_9b9a4f6c2c65443c87b9cd21b32ad319~mv2.avif" alt="" className="w-full h-full object-cover opacity-60" />
+            <img src="/elegant-law-office-interior-with-wooden-bookshelve.jpg" alt="" className="w-full h-full object-cover opacity-60" />
             <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/75 to-primary/60" />
           </div>
 

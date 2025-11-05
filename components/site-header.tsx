@@ -49,11 +49,7 @@ export function SiteHeader({ activeSection, onNavigate }: SiteHeaderProps) {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transform transition-all duration-500 bg-primary/60 backdrop-blur-sm ${
-        isScrolled ? "bg-primary/50 backdrop-blur-xl shadow-md" : ""
-      } ${navbarVisible ? "translate-y-0" : "-translate-y-full"} motion-reduce:transform-none motion-reduce:transition-none`}
-    >
+    <header className={`fixed top-0 left-0 right-0 z-50 transform transition-all duration-500 bg-primary/60 backdrop-blur-sm ${isScrolled ? "bg-primary/50 backdrop-blur-xl shadow-md" : ""} ${navbarVisible ? "translate-y-0" : "-translate-y-full"} motion-reduce:transform-none motion-reduce:transition-none`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center gap-3">
@@ -66,12 +62,7 @@ export function SiteHeader({ activeSection, onNavigate }: SiteHeaderProps) {
               <SheetContent side="left" className="bg-primary text-primary-foreground border-r border-primary-foreground/20 px-6 py-10">
                 <nav className="flex flex-col gap-6 text-lg font-medium" aria-label="Navegación móvil">
                   {navigationItems.map((item) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => handleNavigation(item.id)}
-                      className={`text-left transition-colors ${activeSection === item.id ? "text-accent" : "text-primary-foreground/90 hover:text-accent"}`}
-                    >
+                    <button key={item.id} type="button" onClick={() => handleNavigation(item.id)} className={`text-left transition-colors ${activeSection === item.id ? "text-accent" : "text-primary-foreground/90 hover:text-accent"}`}>
                       {item.label}
                     </button>
                   ))}
@@ -84,30 +75,20 @@ export function SiteHeader({ activeSection, onNavigate }: SiteHeaderProps) {
 
             <button onClick={() => handleNavigation("inicio")} className="flex items-center gap-2 text-primary-foreground hover:opacity-80 transition-opacity" aria-label="Ir a inicio">
               <Scale className="h-8 w-8" />
-              <span className="font-serif text-xl font-bold hidden sm:inline">{"{{NOMBRE_ESTUDIO}}"}</span>
+              <span className="font-serif text-xl font-bold ">{"{{NOMBRE_ESTUDIO}}"}</span>
             </button>
           </div>
 
           <nav className="hidden md:flex items-center gap-8" aria-label="Navegación principal">
             {navigationItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleNavigation(item.id)}
-                className={`text-sm font-medium transition-colors relative ${activeSection === item.id ? "text-accent" : "text-primary-foreground hover:text-accent"}`}
-                aria-current={activeSection === item.id ? "page" : undefined}
-              >
+              <button key={item.id} onClick={() => handleNavigation(item.id)} className={`text-sm font-medium transition-colors relative ${activeSection === item.id ? "text-accent" : "text-primary-foreground hover:text-accent"}`} aria-current={activeSection === item.id ? "page" : undefined}>
                 {item.label}
                 {activeSection === item.id && <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent" />}
               </button>
             ))}
           </nav>
-
-          <Button onClick={() => handleNavigation("contacto")} className="bg-accent text-accent-foreground hover:bg-accent/90">
-            Solicitar consulta
-          </Button>
         </div>
       </div>
     </header>
   );
 }
-
