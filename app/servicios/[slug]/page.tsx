@@ -72,7 +72,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
         <section className="pb-16 pt-8 px-4 sm:px-6 lg:px-8 bg-background">
           <div className="pb-6 max-w-6xl mx-auto fade-in-left">
-            <Link href="/#servicios" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+            <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
               <ArrowLeft className="h-4 w-4" />
               Volver
             </Link>

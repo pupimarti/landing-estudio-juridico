@@ -101,8 +101,8 @@ export default function LawFirmLanding() {
 
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px",
+      threshold: 0.3,
+      rootMargin: "0px 0px 3% 0px",
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
@@ -296,7 +296,7 @@ export default function LawFirmLanding() {
       </section>
 
       {/* Quiénes Somos Section */}
-      <section ref={quienesSomosRef} id="quienes-somos" className="pt-30 pb-30 px-4 sm:px-6 lg:px-8 bg-white fade-in">
+      <section ref={quienesSomosRef} id="quienes-somos" className={`pt-30 pb-30 px-4 sm:px-6 lg:px-8 bg-white ${isMobile ? "" : "fade-in"}`}>
         <div className="max-w-7xl mx-auto">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-8 text-center mb-20">Quiénes somos</h2>
@@ -403,8 +403,9 @@ export default function LawFirmLanding() {
         </div>
       </section>
 
+      <div id="servicios" />
       {/* Servicios Section */}
-      <section ref={serviciosRef} id="servicios" className={`pb-20 pt-30 px-4 sm:px-6 lg:px-8 bg-muted/30 ${isMobile ? "" : "fade-in"}`}>
+      <section ref={serviciosRef} className={`pb-20 pt-30 px-4 sm:px-6 lg:px-8 bg-muted/30 ${isMobile ? "" : "fade-in"}`}>
         <div className="max-w-7xl mx-auto">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-12 text-center">Servicios</h2>
@@ -436,7 +437,8 @@ export default function LawFirmLanding() {
       </section>
 
       {/* Contacto Section */}
-      <section ref={contactoRef} id="contacto" className="pt-30 pb-20 px-4 sm:px-6 lg:px-8 bg-white fade-in">
+      <div id="contacto" />
+      <section ref={contactoRef} className={`pt-30 pb-20 px-4 sm:px-6 lg:px-8 bg-white ${isMobile ? "" : "fade-in"}`}>
         <div className="max-w-7xl mx-auto">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-6 text-center">Contacto</h2>
