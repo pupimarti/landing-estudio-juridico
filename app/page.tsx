@@ -101,8 +101,8 @@ export default function LawFirmLanding() {
 
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.3,
-      rootMargin: "0px 0px 3% 0px",
+      threshold: 0.3, // Lower threshold to trigger earlier
+      rootMargin: "0px 0px 3% 0px", // Positive margin to expand intersection area
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
@@ -137,8 +137,8 @@ export default function LawFirmLanding() {
         });
       }, options);
 
-    const bioObserver = createRevealObserver({ threshold: 0.45, rootMargin: "0px 0px 3% 0px" });
-    const serviceObserver = createRevealObserver({ threshold: 0.3, rootMargin: "0px 0px 3% 0px" });
+    const bioObserver = createRevealObserver({ threshold: 0.2, rootMargin: "0px 0px 3% 0px" });
+    const serviceObserver = createRevealObserver({ threshold: 0.2, rootMargin: "0px 0px 3% 0px" });
 
     const observeElements = (elements: (HTMLElement | null)[], observer: IntersectionObserver) => {
       elements.forEach((element) => {
