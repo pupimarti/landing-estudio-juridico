@@ -87,7 +87,7 @@ export function ServicePageContent({ service }: ServicePageContentProps) {
   };
 
   return (
-    <div ref={containerRef} className={`min-h-screen flex flex-col page-transition-container ${animationClass}`}>
+    <div ref={containerRef} className={` flex flex-col page-transition-container ${animationClass}`}>
       <SiteHeader activeSection="servicios" />
 
       <main className="flex-1">

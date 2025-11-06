@@ -259,7 +259,7 @@ export default function LawFirmLanding() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div>
       <SiteHeader activeSection={activeSection} onNavigate={handleNavigation} />
 
       {/* Hero Section */}

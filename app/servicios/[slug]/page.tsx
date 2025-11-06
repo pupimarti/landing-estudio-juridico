@@ -47,7 +47,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className=" flex flex-col">
       <SiteHeader activeSection="servicios" />
 
       <main className="flex-1">
@@ -58,11 +58,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
           </div>
 
           <div className="max-w-5xl mx-auto text-center text-primary-foreground space-y-6">
-            <span className="uppercase tracking-[0.3em] text-xs sm:text-sm text-primary-foreground/80 fade-in-up">Servicio legal</span>
-            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-balance fade-in-up fade-in-up-delay-1">{service.title}</h1>
-            <p className="text-lg sm:text-xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto fade-in-up fade-in-up-delay-2">{service.heroDescription}</p>
+            <span className="uppercase tracking-[0.3em] text-xs sm:text-sm text-primary-foreground/80 fade-in-left">Servicio legal</span>
+            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-balance fade-in-left fade-in-left-delay-1">{service.title}</h1>
+            <p className="text-lg sm:text-xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto fade-in-left fade-in-left-delay-2">{service.heroDescription}</p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up fade-in-up-delay-3">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-left fade-in-left-delay-3">
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
                 <Link href="/#contacto">Solicitar consulta</Link>
               </Button>

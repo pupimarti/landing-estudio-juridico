@@ -11,9 +11,9 @@
   --card-foreground: oklch(0.25 0.02 240);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.25 0.02 240);
-  --primary: oklch(0.22 0.04 240); /* azul petróleo #0F2741 */
+  --primary: #061d2b; /* azul petróleo #0F2741 */
   --primary-foreground: oklch(0.98 0.002 240);
-  --secondary: oklch(0.28 0.01 240); /* gris oscuro #1F2937 */
+  --secondary: #252a2d; /* gris oscuro #1F2937 */
   --secondary-foreground: oklch(0.98 0.002 240);
   --muted: oklch(0.96 0.002 240);
   --muted-foreground: oklch(0.5 0.01 240);
