@@ -610,7 +610,7 @@ export default function LawFirmLanding() {
 
       {/* Back to Top Button */}
       {showBackToTop && (
-        <button onClick={() => router.push("#inicio")} className="fixed bottom-6 left-6 bg-accent text-accent-foreground p-3 rounded-full shadow-lg hover:bg-accent/90 transition-all z-40" aria-label="Volver arriba">
+        <button onClick={() => scroll.scrollToTop()} className="fixed bottom-6 left-6 bg-accent text-accent-foreground p-3 rounded-full shadow-lg hover:bg-accent/90 transition-all z-40" aria-label="Volver arriba">
           <ChevronUp className="h-5 w-5" />
         </button>
       )}
