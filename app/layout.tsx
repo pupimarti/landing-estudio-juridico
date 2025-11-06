@@ -18,12 +18,21 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://landing-estudio-juridico-eta.vercel.app"),
   title: "Estudio Conti & Nasif",
   description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más. Protegemos tus intereses con soluciones concretas y trato humano en {{CIUDAD/REGIÓN}}.",
   keywords: "abogado, estudio jurídico, asesoría legal, derecho de salud, amparos, derecho laboral, derecho del consumidor, derecho de familia, {{CIUDAD/REGIÓN}}",
   authors: [{ name: "Estudio Conti & Nasif" }],
   creator: "Estudio Conti & Nasif",
+  icons: [
+    {
+      rel: "icon",
+      url: "/favicon.ico",
+    },
+    {
+      rel: "image_src",
+      url: "/logo.png",
+    },
+  ],
   publisher: "Estudio Conti & Nasif",
   formatDetection: {
     email: false,
@@ -42,11 +51,7 @@ export const metadata: Metadata = {
     url: "https://landing-estudio-juridico-eta.vercel.app",
     images: [
       {
-        url: "/logo.png",
-        width: 1200,
-        height: 1200,
-        alt: "Estudio Conti & Nasif Logo",
-        type: "image/png",
+        url: "https://landing-estudio-juridico-eta.vercel.app/logo.png",
       },
     ],
   },
@@ -57,8 +62,6 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/logo.png",
-        width: 1200,
-        height: 1200,
         alt: "Estudio Conti & Nasif Logo",
       },
     ],
