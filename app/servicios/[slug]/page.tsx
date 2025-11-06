@@ -59,7 +59,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
           <div className="max-w-5xl mx-auto text-center text-primary-foreground space-y-6">
             <span className="uppercase tracking-[0.3em] text-xs sm:text-sm text-primary-foreground/80 fade-in-up">Servicio legal</span>
-            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-balance fade-in-up fade-in-up-delay-1">{service.title}</h1>
+            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-balance fade-in-up fade-in-up-delay-1">{service.title}</h1>
             <p className="text-lg sm:text-xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto fade-in-up fade-in-up-delay-2">{service.heroDescription}</p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up fade-in-up-delay-3">
@@ -78,14 +78,19 @@ export default async function ServicePage({ params }: ServicePageProps) {
             </Link>
           </div>
           <div className="max-w-6xl mx-auto grid gap-12 lg:grid-cols-[1.7fr_1fr]">
-            <article className="space-y-6 text-muted-foreground leading-relaxed text-base sm:text-lg fade-in-left">
+            <article
+              className="space-y-6 text-muted-foreground leading-relaxed text-base sm:text-lg fade-in-left"
+              style={{
+                maxWidth: "90vw",
+              }}
+            >
               <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground">Visión general del servicio</h2>
               {service.overview.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
             </article>
 
-            <aside className="space-y-6 fade-in-right fade-in-right-delay-1">
+            <aside className="space-y-6 fade-in-right fade-in-right-delay-1" style={{ maxWidth: "90vw" }}>
               <Card className="border-2 border-border bg-background">
                 <CardContent className="p-6 space-y-4">
                   <h3 className="font-serif text-xl font-semibold text-foreground">¿Qué resolvemos?</h3>
