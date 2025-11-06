@@ -104,7 +104,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 <CardContent className="p-6 space-y-4">
                   <p className="text-sm text-muted-foreground leading-relaxed">Coordinemos una consulta personalizada y empecemos a trabajar en tu caso hoy mismo.</p>
                   <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                    <Link href="/#contacto">{service.cta}</Link>
+                    <Link href="/?goToContact=true">{service.cta}</Link>
                   </Button>
                 </CardContent>
               </Card>

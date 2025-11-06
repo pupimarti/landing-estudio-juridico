@@ -2,6 +2,7 @@
 
 import type React from "react";
 
+import { animateScroll as scroll } from "react-scroll";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -158,44 +159,16 @@ export default function LawFirmLanding() {
     };
   }, [isMobile]);
 
-  const smoothScrollTo = (targetY: number, duration = 500) => {
-    if (typeof window === "undefined") return;
-
-    const startY = window.pageYOffset;
-    const distance = targetY - startY;
-    let startTime: number | null = null;
-
-    const easeInOutQuad = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
-
-    const step = (currentTime: number) => {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
-      const easedProgress = easeInOutQuad(progress);
-
-      window.scrollTo({
-        top: startY + distance * easedProgress,
-        left: 0,
-      });
-
-      if (timeElapsed < duration) {
-        window.requestAnimationFrame(step);
-      }
-    };
-
-    window.requestAnimationFrame(step);
-  };
-
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId: string, duration = 700) => {
     const element = document.getElementById(sectionId);
     if (element) {
       const offset = 0;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        left: 0,
+      scroll.scrollTo(offsetPosition, {
+        duration,
+        smooth: false,
       });
     }
   };
@@ -223,6 +196,7 @@ export default function LawFirmLanding() {
       const scrollPosition = sessionStorage.getItem("servicesScrollPosition");
       const urlParams = new URLSearchParams(window.location.search);
       const isFromService = urlParams.get("isFromService") === "true";
+      const goToContact = urlParams.get("goToContact") === "true";
 
       if (isFromService && scrollPosition) {
         // Remove the parameter from URL without page reload
@@ -230,8 +204,21 @@ export default function LawFirmLanding() {
         window.history.replaceState({}, "", newUrl);
 
         // Restore scroll position
-        window.scrollTo(0, parseInt(scrollPosition, 10));
+        scroll.scrollTo(parseInt(scrollPosition, 10), {
+          duration: 1000,
+          smooth: false,
+        });
         sessionStorage.removeItem("servicesScrollPosition");
+      }
+
+      if (goToContact) {
+        // Remove the parameter from URL without page reload
+        const newUrl = window.location.pathname;
+        window.history.replaceState({}, "", newUrl);
+        scrollToSection("contacto", 1000);
+        setTimeout(() => {
+          scrollToSection("contacto", 1000);
+        }, 100);
       }
     }
   }, []);
@@ -314,7 +301,7 @@ export default function LawFirmLanding() {
           </div>
 
           <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.9s" }}>
-            <button onClick={() => scrollToSection("quienes-somos")} className="mt-8 cursor-pointer animate-bounce w-12 h-12 flex items-center justify-center rounded-full mx-auto focus:outline-none focus:ring-2 focus:ring-primary-foreground/50" aria-label="Ir a Quiénes Somos">
+            <button onClick={() => scrollToSection("quienes-somos", 1000)} className="mt-8 cursor-pointer animate-bounce w-12 h-12 flex items-center justify-center rounded-full mx-auto focus:outline-none focus:ring-2 focus:ring-primary-foreground/50" aria-label="Ir a Quiénes Somos">
               <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
               </svg>
