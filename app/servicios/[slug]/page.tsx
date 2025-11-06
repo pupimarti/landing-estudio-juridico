@@ -51,28 +51,21 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <SiteHeader activeSection="servicios" />
 
       <main className="flex-1">
-        <section className="relative overflow-hidden pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <section className="relative overflow-hidden pt-30 pb-15 px-4 sm:px-6 lg:px-8">
           <div className="absolute inset-0 -z-10">
             <img src="/elegant-law-office-interior-with-wooden-bookshelve.jpg" alt="" className="w-full h-full object-cover opacity-60" />
             <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/75 to-primary/60" />
           </div>
 
           <div className="max-w-5xl mx-auto text-center text-primary-foreground space-y-6">
-            <span className="uppercase tracking-[0.3em] text-xs sm:text-sm text-primary-foreground/80 fade-in-left">Servicio legal</span>
-            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-balance fade-in-left fade-in-left-delay-1">{service.title}</h1>
-            <p className="text-lg sm:text-xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto fade-in-left fade-in-left-delay-2">{service.heroDescription}</p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-left fade-in-left-delay-3">
-              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                <Link href="/#contacto">Solicitar consulta</Link>
-              </Button>
-            </div>
+            <span className="uppercase tracking-[0.3em] text-xs sm:text-sm text-primary-foreground/80 fade-in-down">Servicio legal</span>
+            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-balance fade-in-down fade-in-down-delay-1">{service.title}</h1>
           </div>
         </section>
 
         <section className="pb-16 pt-8 px-4 sm:px-6 lg:px-8 bg-background">
-          <div className="pb-6 max-w-6xl mx-auto fade-in-left">
-            <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+          <div className="pb-6 max-w-6xl mx-auto ">
+            <Link href="/?isFromService=true" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
               <ArrowLeft className="h-4 w-4" />
               Volver
             </Link>

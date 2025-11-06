@@ -203,7 +203,10 @@ export default function LawFirmLanding() {
   };
 
   const handleServiceDetail = (slug: string) => {
-    if (typeof document !== "undefined") {
+    if (typeof window !== "undefined") {
+      // Save current scroll position
+      sessionStorage.setItem("servicesScrollPosition", window.scrollY.toString());
+
       const html = document.documentElement;
       if (originalScrollBehaviorRef.current === null) {
         originalScrollBehaviorRef.current = html.style.scrollBehavior;
@@ -212,6 +215,24 @@ export default function LawFirmLanding() {
     }
     router.push(`/servicios/${slug}`);
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const scrollPosition = sessionStorage.getItem("servicesScrollPosition");
+      const urlParams = new URLSearchParams(window.location.search);
+      const isFromService = urlParams.get("isFromService") === "true";
+
+      if (isFromService && scrollPosition) {
+        // Remove the parameter from URL without page reload
+        const newUrl = window.location.pathname;
+        window.history.replaceState({}, "", newUrl);
+
+        // Restore scroll position
+        window.scrollTo(0, parseInt(scrollPosition, 10));
+        sessionStorage.removeItem("servicesScrollPosition");
+      }
+    }
+  }, []);
 
   const validateForm = () => {
     const errors: Record<string, string> = {};
@@ -403,9 +424,8 @@ export default function LawFirmLanding() {
         </div>
       </section>
 
-      <div id="servicios" />
       {/* Servicios Section */}
-      <section ref={serviciosRef} className={`pb-20 pt-30 px-4 sm:px-6 lg:px-8 bg-muted/30 ${isMobile ? "" : "fade-in"}`}>
+      <section ref={serviciosRef} id="servicios" className={`pb-20 pt-30 px-4 sm:px-6 lg:px-8 bg-muted/30 ${isMobile ? "" : "fade-in"}`}>
         <div className="max-w-7xl mx-auto">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-12 text-center">Servicios</h2>
@@ -424,7 +444,7 @@ export default function LawFirmLanding() {
                       <h3 className="font-serif text-xl font-semibold text-foreground mb-3 group-hover:text-accent transition-colors">{service.title}</h3>
                       <p className="text-muted-foreground leading-relaxed mb-4 flex-grow text-sm">{service.shortDescription}</p>
                       <p className="text-sm font-medium text-accent mb-4">{service.footer}</p>
-                      <Button variant="outline" size="sm" onClick={() => handleServiceDetail(service.slug)} className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground">
+                      <Button variant="outline" size="sm" onClick={() => handleServiceDetail(service.slug)} className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground cursor-pointer">
                         Más información
                       </Button>
                     </CardContent>
@@ -576,7 +596,7 @@ export default function LawFirmLanding() {
       <SiteFooter onNavigate={handleNavigation} />
 
       {/* WhatsApp Floating Button */}
-      <a href="https://wa.me/{{TELEFONO}}" target="_blank" rel="noopener noreferrer" className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#20BA5A] transition-colors z-40" aria-label="Abrir WhatsApp">
+      {/* <a href="https://wa.me/{{TELEFONO}}" target="_blank" rel="noopener noreferrer" className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#20BA5A] transition-colors z-40" aria-label="Abrir WhatsApp">
         <div
           style={{
             width: "32px",
@@ -592,7 +612,7 @@ export default function LawFirmLanding() {
             />
           </svg>
         </div>
-      </a>
+      </a> */}
 
       {/* Back to Top Button */}
       {showBackToTop && (
