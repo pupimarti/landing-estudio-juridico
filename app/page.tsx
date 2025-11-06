@@ -289,8 +289,8 @@ export default function LawFirmLanding() {
       <section id="inicio" className={`relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden ${loadingIsMobile ? "hidden" : ""}  ${isMobile ? "min-h-[75vh]" : "min-h-[85vh]"} flex items-center `}>
         <div className="absolute inset-0 -z-10">
           <img src="/a5603f_9b9a4f6c2c65443c87b9cd21b32ad319~mv2.avif" alt="" className="w-full h-full object-cover" loading="eager" />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/70 to-primary/70" />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/75 to-primary/75" />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
 
         <div
@@ -300,14 +300,14 @@ export default function LawFirmLanding() {
           }}
         >
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className={`font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 text-balance fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.1s", lineHeight: "0.8" }}>
+            <h1 className={`font-serif text-5xl sm:text-6xl lg:text-6xl font-bold text-primary-foreground mb-6 text-balance fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.1s", lineHeight: "0.8" }}>
               {"Estudio Conti & Nasif"}
             </h1>
-            <p className={`text-sm sm:text-lg text-primary-foreground/90 mb-10 text-pretty leading-relaxed fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.25s" }}>
-              Nos apasiona brindar soluciones estratégicas y personalizadas a cada uno de nuestros clientes. Con experiencia y compromiso, trabajamos para ofrecer un servicio de calidad, basado en la confianza y la excelencia. ¡Estamos acá para ayudarte!
+            <p className={`text-md sm:text-lg text-primary-foreground/90 mb-10 text-pretty leading-relaxed fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.25s" }}>
+              Entendemos tu problema. Encontramos la solución. Te acompañamos con compromiso, claridad y experiencia para resolver tus conflictos legales y proteger lo que más te importa.
             </p>
             <div className={`fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.4s" }}>
-              <Button size="lg" onClick={() => scrollToSection("contacto")} className="bg-accent text-accent-foreground hover:bg-accent/90 text-base py-6 min-w-[280px]">
+              <Button size="lg" onClick={() => scrollToSection("contacto")} className="bg-accent text-accent-foreground hover:bg-accent/90 text-base py-7 min-w-[280px]">
                 Solicitar consulta
               </Button>
             </div>
@@ -350,8 +350,8 @@ export default function LawFirmLanding() {
                     <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Abogado</p>
                     <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Guillermo Conti</h3>
                   </div>
-                  <p className="text-base sm:text-lg">Guillermo lidera el área de litigios complejos del estudio. Cuenta con más de 15 años de experiencia representando a empresas y particulares en conflictos civiles y comerciales, brindando soluciones estratégicas y orientadas a resultados concretos.</p>
-                  <p className="text-base sm:text-lg">Su enfoque combina análisis jurídico riguroso con una comunicación clara y cercana, asegurando que cada cliente entienda el estado de su caso y las alternativas disponibles.</p>
+                  <p className="text-base sm:text-lg">Me especializo en litigios civiles y comerciales complejos. Cuento con más de 15 años de experiencia representando tanto a empresas como a particulares, siempre con un enfoque estratégico y orientado a resultados concretos.</p>
+                  <p className="text-base sm:text-lg">Busco que cada cliente entienda su caso, las opciones disponibles y los pasos a seguir, combinando un análisis jurídico riguroso con una comunicación clara y cercana.</p>
                   <div className="flex flex-wrap gap-3">
                     <Button asChild variant="outline" size="sm" className="gap-2">
                       <a href="https://wa.me/{{TELEFONO_CONTI}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dr. Guillermo Conti">
@@ -396,8 +396,8 @@ export default function LawFirmLanding() {
                     <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Abogado</p>
                     <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Mariano Nasif</h3>
                   </div>
-                  <p className="text-base sm:text-lg">Mariano lidera las prácticas de derecho laboral y asesoramiento preventivo. Su trabajo se centra en acompañar a empresas y profesionales en la toma de decisiones estratégicas, anticipando riesgos y diseñando políticas claras que protegen tanto a empleadores como colaboradores.</p>
-                  <p className="text-base sm:text-lg">Su estilo combina empatía, precisión técnica y visión de negocio para construir relaciones de confianza de largo plazo.</p>
+                  <p className="text-base sm:text-lg">Lidero el área de derecho laboral y asesoramiento preventivo. Acompaño a empresas y profesionales en la toma de decisiones clave, anticipando riesgos y diseñando políticas que protegen tanto a empleadores como a colaboradores.</p>
+                  <p className="text-base sm:text-lg">Trabajo con empatía, precisión técnica y visión de negocio para construir relaciones de confianza y soluciones sostenibles a largo plazo.</p>
                   <div className="flex flex-wrap gap-3">
                     <Button asChild variant="outline" size="sm" className="gap-2">
                       <a href="https://wa.me/{{TELEFONO_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dr. Mariano Nasif">
