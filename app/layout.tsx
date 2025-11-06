@@ -38,13 +38,27 @@ export const metadata: Metadata = {
     siteName: "Estudio Conti & Nasif",
     locale: "es_AR",
     type: "website",
-    images: ["/logo.png"],
+    images: [
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Estudio Conti & Nasif Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Estudio Conti & Nasif",
     description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más.",
-    images: ["/logo.png"],
+    images: [
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Estudio Conti & Nasif Logo",
+      },
+    ],
   },
   robots: {
     index: true,
