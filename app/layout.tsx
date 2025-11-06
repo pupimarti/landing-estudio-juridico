@@ -40,10 +40,11 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo.png",
-        width: 800,
-        height: 600,
+        url: "https://landing-estudio-juridico-eta.vercel.app/logo.png",
+        width: 1200,
+        height: 630,
         alt: "Estudio Conti & Nasif Logo",
+        type: "image/png",
       },
     ],
   },
@@ -53,9 +54,9 @@ export const metadata: Metadata = {
     description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más.",
     images: [
       {
-        url: "/logo.png",
-        width: 800,
-        height: 600,
+        url: "https://landing-estudio-juridico-eta.vercel.app/logo.png",
+        width: 1200,
+        height: 630,
         alt: "Estudio Conti & Nasif Logo",
       },
     ],
