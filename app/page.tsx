@@ -307,7 +307,7 @@ export default function LawFirmLanding() {
               Tu tranquilidad jurídica es nuestra prioridad. Combinamos experiencia, dedicación y estrategia para ofrecer soluciones legales efectivas y personalizadas.
             </p>
             <div className={`fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.4s" }}>
-              <Button size="lg" onClick={() => scrollToSection("contacto")} className="bg-accent text-accent-foreground hover:bg-accent/90 text-base py-7 min-w-[280px]">
+              <Button size="lg" onClick={() => scrollToSection("contacto")} className="bg-accent text-accent-foreground hover:bg-accent/90 text-base py-6 sm:py-7 min-w-[280px]">
                 Solicitar consulta
               </Button>
             </div>
@@ -350,9 +350,9 @@ export default function LawFirmLanding() {
                     <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Abogado</p>
                     <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Guillermo Conti</h3>
                   </div>
-                  <p className="text-base sm:text-lg">Me especializo en litigios civiles y comerciales complejos. Cuento con más de 15 años de experiencia representando tanto a empresas como a particulares, siempre con un enfoque estratégico y orientado a resultados concretos.</p>
-                  <p className="text-base sm:text-lg">Busco que cada cliente entienda su caso, las opciones disponibles y los pasos a seguir, combinando un análisis jurídico riguroso con una comunicación clara y cercana.</p>
-                  <div className="flex flex-wrap gap-3">
+                  <p className="text-base sm:text-lg text-center sm:text-left">Me especializo en litigios civiles y comerciales complejos. Cuento con más de 15 años de experiencia representando tanto a empresas como a particulares, siempre con un enfoque estratégico y orientado a resultados concretos.</p>
+                  <p className="text-base sm:text-lg text-center sm:text-left">Busco que cada cliente entienda su caso, las opciones disponibles y los pasos a seguir, combinando un análisis jurídico riguroso con una comunicación clara y cercana.</p>
+                  <div className="flex flex-wrap gap-3 items-center justify-center sm:justify-start">
                     <Button asChild variant="outline" size="sm" className="gap-2">
                       <a href="https://wa.me/{{TELEFONO_CONTI}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dr. Guillermo Conti">
                         <MessageCircle className="h-4 w-4" />
@@ -396,9 +396,9 @@ export default function LawFirmLanding() {
                     <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Abogado</p>
                     <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Mariano Nasif</h3>
                   </div>
-                  <p className="text-base sm:text-lg">Lidero el área de derecho laboral y asesoramiento preventivo. Acompaño a empresas y profesionales en la toma de decisiones clave, anticipando riesgos y diseñando políticas que protegen tanto a empleadores como a colaboradores.</p>
-                  <p className="text-base sm:text-lg">Trabajo con empatía, precisión técnica y visión de negocio para construir relaciones de confianza y soluciones sostenibles a largo plazo.</p>
-                  <div className="flex flex-wrap gap-3">
+                  <p className="text-base sm:text-lg text-center sm:text-left">Lidero el área de derecho laboral y asesoramiento preventivo. Acompaño a empresas y profesionales en la toma de decisiones clave, anticipando riesgos y diseñando políticas que protegen tanto a empleadores como a colaboradores.</p>
+                  <p className="text-base sm:text-lg text-center sm:text-left">Trabajo con empatía, precisión técnica y visión de negocio para construir relaciones de confianza y soluciones sostenibles a largo plazo.</p>
+                  <div className="flex flex-wrap gap-3 items-center justify-center sm:justify-start">
                     <Button asChild variant="outline" size="sm" className="gap-2">
                       <a href="https://wa.me/{{TELEFONO_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dr. Mariano Nasif">
                         <MessageCircle className="h-4 w-4" />
