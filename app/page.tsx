@@ -300,11 +300,11 @@ export default function LawFirmLanding() {
           }}
         >
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className={`font-serif text-5xl sm:text-6xl lg:text-6xl font-bold text-primary-foreground mb-6 text-balance fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.1s", lineHeight: "0.8" }}>
+            <h1 className={`font-serif text-4xl sm:text-6xl lg:text-6xl font-bold text-primary-foreground mb-6 text-balance fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.1s", lineHeight: "0.8" }}>
               {"Estudio Conti & Nasif"}
             </h1>
             <p className={`text-md sm:text-lg text-primary-foreground/90 mb-10 text-pretty leading-relaxed fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.25s" }}>
-              Entendemos tu problema. Encontramos la solución. Te acompañamos con compromiso, claridad y experiencia para resolver tus conflictos legales y proteger lo que más te importa.
+              Tu tranquilidad jurídica es nuestra prioridad. Combinamos experiencia, dedicación y estrategia para ofrecer soluciones legales efectivas y personalizadas.
             </p>
             <div className={`fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.4s" }}>
               <Button size="lg" onClick={() => scrollToSection("contacto")} className="bg-accent text-accent-foreground hover:bg-accent/90 text-base py-7 min-w-[280px]">
