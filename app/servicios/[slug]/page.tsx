@@ -54,7 +54,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <section className="relative overflow-hidden pt-30 pb-15 px-4 sm:px-6 lg:px-8">
           <div className="absolute inset-0 -z-10">
             <img src="/elegant-law-office-interior-with-wooden-bookshelve.jpg" alt="" className="w-full h-full object-cover opacity-60" />
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/75 to-primary/60" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/70 via-95% to-background/100 " />
           </div>
 
           <div className="max-w-5xl mx-auto text-center text-primary-foreground space-y-6">
