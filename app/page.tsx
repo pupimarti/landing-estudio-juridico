@@ -187,14 +187,16 @@ export default function LawFirmLanding() {
   };
 
   const scrollToSection = (sectionId: string) => {
-    router.replace(`/#${sectionId}`);
     const element = document.getElementById(sectionId);
     if (element) {
       const offset = 0;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-      smoothScrollTo(offsetPosition);
+      window.scrollTo({
+        top: offsetPosition,
+        left: 0,
+      });
     }
   };
 
@@ -311,7 +313,7 @@ export default function LawFirmLanding() {
             </div>
           </div>
 
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+          <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.9s" }}>
             <button onClick={() => scrollToSection("quienes-somos")} className="mt-8 animate-bounce w-12 h-12 flex items-center justify-center rounded-full mx-auto focus:outline-none focus:ring-2 focus:ring-primary-foreground/50" aria-label="Ir a Quiénes Somos">
               <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
@@ -338,14 +340,14 @@ export default function LawFirmLanding() {
                     <img src="/law2-r.jpg" alt="Dr. Guillermo Conti" className="absolute inset-0 w-full h-full object-cover object-center" />
                     <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
                     <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
-                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Socio fundador</p>
+                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Abogado</p>
                       <p className="font-serif text-2xl sm:text-3xl font-semibold mt-1 text-white">Dr. Guillermo Conti</p>
                     </div>
                   </div>
                 </div>
                 <div className="w-full space-y-6">
                   <div className="space-y-2 hidden lg:block">
-                    <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Socio fundador</p>
+                    <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Abogado</p>
                     <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Guillermo Conti</h3>
                   </div>
                   <p className="text-base sm:text-lg">Guillermo lidera el área de litigios complejos del estudio. Cuenta con más de 15 años de experiencia representando a empresas y particulares en conflictos civiles y comerciales, brindando soluciones estratégicas y orientadas a resultados concretos.</p>
@@ -384,14 +386,14 @@ export default function LawFirmLanding() {
                     <img src="/law1-r.jpg" alt="Dr. Mariano Nasif" className="absolute inset-0 w-full h-full object-cover object-center" />
                     <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
                     <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
-                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Socio fundador</p>
+                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Abogado</p>
                       <p className="font-serif text-2xl sm:text-3xl font-semibold mt-1 text-white">Dr. Mariano Nasif</p>
                     </div>
                   </div>
                 </div>
                 <div className="w-full space-y-6">
                   <div className="space-y-2 hidden lg:block">
-                    <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Socio fundador</p>
+                    <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Abogado</p>
                     <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Mariano Nasif</h3>
                   </div>
                   <p className="text-base sm:text-lg">Mariano lidera las prácticas de derecho laboral y asesoramiento preventivo. Su trabajo se centra en acompañar a empresas y profesionales en la toma de decisiones estratégicas, anticipando riesgos y diseñando políticas claras que protegen tanto a empleadores como colaboradores.</p>
@@ -540,7 +542,7 @@ export default function LawFirmLanding() {
                     )}
                   </div>
 
-                  <Button type="submit" className="w-full bg-accent text-white hover:bg-accent/90" size="lg">
+                  <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" size="lg">
                     Enviar consulta
                   </Button>
 
