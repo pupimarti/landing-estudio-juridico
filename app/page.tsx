@@ -275,7 +275,7 @@ export default function LawFirmLanding() {
       {/* Hero Section */}
       <section id="inicio" className={`relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden ${loadingIsMobile ? "hidden" : ""}  ${isMobile ? "min-h-[75vh]" : "min-h-[85vh]"} flex items-center `}>
         <div className="absolute inset-0 -z-10">
-          <img src="/a5603f_9b9a4f6c2c65443c87b9cd21b32ad319~mv2.avif" alt="" className="w-full h-full object-cover" loading="eager" />
+          <img src="/a5603f_9b9a4f6c2c65443c87b9cd21b32ad319~mv2.jpg" alt="" className="w-full h-full object-cover" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/75 to-primary/75" />
           <div className="absolute inset-0 bg-black/40" />
         </div>
@@ -302,7 +302,7 @@ export default function LawFirmLanding() {
 
           <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 fade-in ${heroVisible ? "fade-in-visible" : ""}`} style={{ transitionDelay: "0.9s" }}>
             <button onClick={() => scrollToSection("quienes-somos", 500)} className="mt-8 cursor-pointer animate-bounce w-12 h-12 flex items-center justify-center rounded-full mx-auto focus:outline-none focus:ring-2 focus:ring-primary-foreground/50" aria-label="Ir a Quiénes Somos">
-              <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className={`w-6 h-6 sm:w-8 sm:h-8 text-primary-foreground`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
               </svg>
             </button>

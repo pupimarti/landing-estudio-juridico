@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Scale, Menu, XIcon } from "lucide-react";
+import { Scale } from "lucide-react";
 
 export const navigationItems = [
   { id: "inicio", label: "Inicio" },
@@ -21,6 +21,21 @@ interface SiteHeaderProps {
 }
 
 let navbarAnimationPlayed = false;
+
+interface AnimatedHamburgerProps {
+  isOpen: boolean;
+  onClick: () => void;
+}
+
+function AnimatedHamburger({ isOpen, onClick }: AnimatedHamburgerProps) {
+  return (
+    <button type="button" onClick={onClick} className="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1.5 text-primary-foreground hover:text-accent transition-colors" aria-label={isOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={isOpen}>
+      <div className={`w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${isOpen ? "rotate-45 translate-y-2" : ""}`} />
+      <div className={`w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${isOpen ? "opacity-0" : ""}`} />
+      <div className={`w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${isOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+    </button>
+  );
+}
 
 export function SiteHeader({ activeSection, onNavigate, isMobile }: SiteHeaderProps) {
   const router = useRouter();
@@ -71,18 +86,12 @@ export function SiteHeader({ activeSection, onNavigate, isMobile }: SiteHeaderPr
 
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <button type="button" className="md:hidden text-primary-foreground hover:text-accent transition-colors" aria-label="Abrir menú">
-                  <Menu className="h-8 w-8" />
-                </button>
+                <AnimatedHamburger isOpen={isMobileMenuOpen} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
               </SheetTrigger>
               <SheetContent side="right" className="bg-primary/60 backdrop-blur-xl text-primary-foreground border-l border-primary-foreground/20 p-0">
                 <div className="flex items-center justify-between p-6 border-b border-primary-foreground/20">
                   <div className="flex items-center gap-2"></div>
-                  <SheetClose asChild>
-                    <button type="button" className="text-primary-foreground hover:text-accent transition-colors" aria-label="Cerrar menú">
-                      <XIcon className="h-8 w-8" />
-                    </button>
-                  </SheetClose>
+                  <AnimatedHamburger isOpen={isMobileMenuOpen} onClick={() => setIsMobileMenuOpen(false)} />
                 </div>
                 <div className="p-6">
                   <nav className="flex flex-col gap-6" aria-label="Navegación móvil">
