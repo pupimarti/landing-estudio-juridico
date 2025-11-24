@@ -3,7 +3,7 @@
 import type React from "react";
 
 import { animateScroll as scroll } from "react-scroll";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, forwardRef } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,9 +11,136 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, ChevronUp, MessageCircle, Linkedin, Instagram, Youtube } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { services } from "@/lib/services";
+
+type LawyerContact = {
+  label: string;
+  href: string;
+  ariaLabel: string;
+  Icon: LucideIcon;
+  external?: boolean;
+};
+
+type Lawyer = {
+  name: string;
+  title: string;
+  image: string;
+  descriptions: string[];
+  contacts: LawyerContact[];
+};
+
+const lawyers: Lawyer[] = [
+  {
+    name: "Juan Pablo Conti",
+    title: "Abogado",
+    image: "/law2-r.jpg",
+    descriptions: ["Coordino el equipo de derecho corporativo y fusiones, acompañando a compañías en procesos de crecimiento, auditorías y negociaciones complejas."],
+    contacts: [
+      {
+        label: "Email",
+        href: "mailto:{{EMAIL_DUARTE}}",
+        ariaLabel: "Email Juan Pablo Conti",
+        Icon: Mail,
+        external: false,
+      },
+    ],
+  },
+  {
+    name: "Mariano Nasif",
+    title: "Abogado",
+    image: "/law1-r.jpg",
+    descriptions: ["Lidero el área de derecho laboral y asesoramiento preventivo. Acompaño a empresas y profesionales en la toma de decisiones clave, anticipando riesgos y diseñando políticas que protegen tanto a empleadores como a colaboradores."],
+    contacts: [
+      {
+        label: "Email",
+        href: "mailto:{{EMAIL_NASIF}}",
+        ariaLabel: "Email Mariano Nasif",
+        Icon: Mail,
+        external: false,
+      },
+    ],
+  },
+  {
+    name: "Guillermo Conti",
+    title: "Abogado",
+    image: "/law2-r.jpg",
+    descriptions: ["Me especializo en litigios civiles y comerciales complejos. Cuento con más de 15 años de experiencia representando tanto a empresas como a particulares, siempre con un enfoque estratégico y orientado a resultados concretos."],
+    contacts: [
+      {
+        label: "Email",
+        href: "mailto:{{EMAIL_CONTI}}",
+        ariaLabel: "Email Guillermo Conti",
+        Icon: Mail,
+        external: false,
+      },
+    ],
+  },
+  {
+    name: "Guillermo Esteban Romeo",
+    title: "Abogado",
+    image: "/law2-r.jpg",
+    descriptions: ["Coordino el equipo de derecho corporativo y fusiones, acompañando a compañías en procesos de crecimiento, auditorías y negociaciones complejas."],
+    contacts: [
+      {
+        label: "Email",
+        href: "mailto:{{EMAIL_DUARTE}}",
+        ariaLabel: "Email Guillermo Esteban Romeo",
+        Icon: Mail,
+        external: false,
+      },
+    ],
+  },
+];
+
+type LawyerCardProps = {
+  lawyer: Lawyer;
+  isMobile: boolean;
+};
+
+const LawyerCard = forwardRef<HTMLDivElement, LawyerCardProps>(({ lawyer, isMobile }, ref) => (
+  <div ref={ref} className={`flex flex-col lg:flex-row items-center sm:items-start gap-5 sm:gap-10 ${isMobile ? "fade-in" : ""} `}>
+    <div className="w-full max-w-[220px] sm:max-w-[260px] lg:max-w-[220px] flex-shrink-0">
+      <div className="relative overflow-hidden rounded-xl shadow-xl ring-1 ring-border/70 aspect-[2/3]">
+        <img src={lawyer.image} alt={lawyer.name} className="absolute inset-0 w-full h-full object-cover object-center" />
+        <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
+        <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
+          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">{lawyer.title}</p>
+          <p className="font-serif text-2xl sm:text-3xl font-semibold mt-1 text-white">{lawyer.name}</p>
+        </div>
+      </div>
+    </div>
+    <div className="w-full space-y-6">
+      <div className="space-y-2 hidden lg:block">
+        <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">{lawyer.title}</p>
+        <h3 className="font-serif text-base sm:text-xl font-semibold text-foreground">{lawyer.name}</h3>
+      </div>
+      {lawyer.descriptions.map((description, descriptionIndex) => (
+        <p key={`${lawyer.name}-description-${descriptionIndex}`} className="text-xs sm:text-base text-center sm:text-left">
+          {description}
+        </p>
+      ))}
+      <div className="flex flex-wrap gap-3 items-center justify-center sm:justify-start">
+        {lawyer.contacts.map((contact) => {
+          const Icon = contact.Icon;
+          const isExternal = contact.external !== false;
+          return (
+            <Button key={`${lawyer.name}-${contact.label}`} asChild variant="outline" size="sm" className="gap-2">
+              <a href={contact.href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined} aria-label={contact.ariaLabel}>
+                <Icon className="h-4 w-4" />
+                {contact.label}
+              </a>
+            </Button>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+));
+
+LawyerCard.displayName = "LawyerCard";
 
 export default function LawFirmLanding() {
   const [activeSection, setActiveSection] = useState("inicio");
@@ -315,104 +442,17 @@ export default function LawFirmLanding() {
         <div className="max-w-7xl mx-auto">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-8 text-center mb-20">Quiénes somos</h2>
-            <div className="space-y-20 text-muted-foreground leading-relaxed">
-              <div
-                ref={(el) => {
-                  bioSectionsRef.current[0] = el;
-                }}
-                className={`flex flex-col lg:flex-row items-center gap-5 sm:gap-14 ${isMobile ? "fade-in" : ""}`}
-              >
-                <div className="w-full max-w-xs sm:max-w-sm lg:max-w-sm flex-shrink-0">
-                  <div className="relative overflow-hidden rounded-xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
-                    <img src="/law2-r.jpg" alt="Dr. Guillermo Conti" className="absolute inset-0 w-full h-full object-cover object-center" />
-                    <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
-                    <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
-                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Abogado</p>
-                      <p className="font-serif text-2xl sm:text-3xl font-semibold mt-1 text-white">Dr. Guillermo Conti</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full space-y-6">
-                  <div className="space-y-2 hidden lg:block">
-                    <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Abogado</p>
-                    <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Guillermo Conti</h3>
-                  </div>
-                  <p className="text-base sm:text-lg text-center sm:text-left">Me especializo en litigios civiles y comerciales complejos. Cuento con más de 15 años de experiencia representando tanto a empresas como a particulares, siempre con un enfoque estratégico y orientado a resultados concretos.</p>
-                  <p className="text-base sm:text-lg text-center sm:text-left">Busco que cada cliente entienda su caso, las opciones disponibles y los pasos a seguir, combinando un análisis jurídico riguroso con una comunicación clara y cercana.</p>
-                  <div className="flex flex-wrap gap-3 items-center justify-center sm:justify-start">
-                    <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="https://wa.me/{{TELEFONO_CONTI}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dr. Guillermo Conti">
-                        <MessageCircle className="h-4 w-4" />
-                        WhatsApp
-                      </a>
-                    </Button>
-                    <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="mailto:{{EMAIL_CONTI}}" aria-label="Email Dr. Guillermo Conti">
-                        <Mail className="h-4 w-4" />
-                        Email
-                      </a>
-                    </Button>
-                    <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="https://www.youtube.com/{{YOUTUBE_CONTI}}" target="_blank" rel="noopener noreferrer" aria-label="YouTube Dr. Guillermo Conti">
-                        <Youtube className="h-4 w-4" />
-                        YouTube
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                ref={(el) => {
-                  bioSectionsRef.current[1] = el;
-                }}
-                className={`flex flex-col lg:flex-row-reverse items-center gap-5 sm:gap-14 ${isMobile ? "fade-in" : ""}`}
-              >
-                <div className="w-full max-w-xs sm:max-w-sm lg:max-w-sm flex-shrink-0">
-                  <div className="relative overflow-hidden rounded-xl shadow-xl ring-1 ring-border/70 aspect-[3/4]">
-                    <img src="/law1-r.jpg" alt="Dr. Mariano Nasif" className="absolute inset-0 w-full h-full object-cover object-center" />
-                    <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
-                    <div className="lg:hidden absolute bottom-5 left-5 right-5 text-white">
-                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-white/80">Abogado</p>
-                      <p className="font-serif text-2xl sm:text-3xl font-semibold mt-1 text-white">Dr. Mariano Nasif</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full space-y-6">
-                  <div className="space-y-2 hidden lg:block">
-                    <p className="text-accent font-semibold tracking-[0.2em] uppercase text-xs">Abogado</p>
-                    <h3 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">Dr. Mariano Nasif</h3>
-                  </div>
-                  <p className="text-base sm:text-lg text-center sm:text-left">Lidero el área de derecho laboral y asesoramiento preventivo. Acompaño a empresas y profesionales en la toma de decisiones clave, anticipando riesgos y diseñando políticas que protegen tanto a empleadores como a colaboradores.</p>
-                  <p className="text-base sm:text-lg text-center sm:text-left">Trabajo con empatía, precisión técnica y visión de negocio para construir relaciones de confianza y soluciones sostenibles a largo plazo.</p>
-                  <div className="flex flex-wrap gap-3 items-center justify-center sm:justify-start">
-                    <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="https://wa.me/{{TELEFONO_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dr. Mariano Nasif">
-                        <MessageCircle className="h-4 w-4" />
-                        WhatsApp
-                      </a>
-                    </Button>
-                    <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="mailto:{{EMAIL_NASIF}}" aria-label="Email Dr. Mariano Nasif">
-                        <Mail className="h-4 w-4" />
-                        Email
-                      </a>
-                    </Button>
-                    <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="https://www.linkedin.com/{{LINKEDIN_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Dr. Mariano Nasif">
-                        <Linkedin className="h-4 w-4" />
-                        LinkedIn
-                      </a>
-                    </Button>
-                    <Button asChild variant="outline" size="sm" className="gap-2">
-                      <a href="https://www.instagram.com/{{INSTAGRAM_NASIF}}" target="_blank" rel="noopener noreferrer" aria-label="Instagram Dr. Mariano Nasif">
-                        <Instagram className="h-4 w-4" />
-                        Instagram
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              </div>
+            <div className="text-muted-foreground leading-relaxed grid gap-16 lg:grid-cols-2">
+              {lawyers.map((lawyer, index) => (
+                <LawyerCard
+                  key={lawyer.name}
+                  lawyer={lawyer}
+                  isMobile={isMobile}
+                  ref={(el) => {
+                    bioSectionsRef.current[index] = el;
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -571,7 +611,7 @@ export default function LawFirmLanding() {
                   </div>
                 </div>
 
-                <Card className="bg-muted/50 border-2 border-border">
+                {/* <Card className="bg-muted/50 border-2 border-border">
                   <CardContent className="">
                     <h4 className="font-serif font-semibold text-foreground mb-3">Horario de atención</h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -580,7 +620,7 @@ export default function LawFirmLanding() {
                       Consultas urgentes: Disponibles 24/7
                     </p>
                   </CardContent>
-                </Card>
+                </Card> */}
               </div>
             </div>
           </div>
