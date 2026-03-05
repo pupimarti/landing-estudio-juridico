@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -68,6 +67,9 @@ export function SiteHeader({ activeSection, onNavigate, isMobile }: SiteHeaderPr
   const handleNavigation = (sectionId: string) => {
     if (onNavigate) {
       onNavigate(sectionId);
+    } else {
+      const href = sectionId === "inicio" ? "/" : `/#${sectionId}`;
+      router.push(href);
     }
 
     setIsMobileMenuOpen(false);

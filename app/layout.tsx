@@ -17,6 +17,9 @@ const merriweather = Merriweather({
   display: "swap",
 });
 
+const CONTACT_EMAIL = "guillermoconti@contiabogados.com";
+const CONTACT_PHONE = "+54 9 11 2604-4758";
+
 export const metadata: Metadata = {
   title: "Estudio Conti & Nasif",
   description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más. Protegemos tus intereses con soluciones concretas y trato humano en {{CIUDAD/REGIÓN}}.",
@@ -90,8 +93,8 @@ export default function RootLayout({
     "@type": "LegalService",
     name: "Estudio Conti & Nasif",
     description: "Estudio jurídico especializado en asesoría legal clara y estratégica",
-    telephone: "{{TELEFONO}}",
-    email: "{{EMAIL_ESTUDIO}}",
+    telephone: CONTACT_PHONE,
+    email: CONTACT_EMAIL,
     address: {
       "@type": "PostalAddress",
       streetAddress: "{{DIRECCION}}",

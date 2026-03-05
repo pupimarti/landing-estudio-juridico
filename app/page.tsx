@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Mail, ChevronUp, MessageCircle, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Phone, Mail, ChevronUp, MessageCircle, Linkedin, Instagram, Youtube, MapPin } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -32,6 +32,11 @@ type Lawyer = {
   contacts: LawyerContact[];
 };
 
+const CONTACT_EMAIL = "guillermoconti@contiabogados.com";
+const WHATSAPP_NUMBER = "5491126044758";
+const WHATSAPP_DISPLAY_NUMBER = "+54 9 11 2604-4758";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+
 const lawyers: Lawyer[] = [
   {
     name: "Juan Pablo Conti",
@@ -41,7 +46,7 @@ const lawyers: Lawyer[] = [
     contacts: [
       {
         label: "Email",
-        href: "mailto:{{EMAIL_DUARTE}}",
+        href: `mailto:${CONTACT_EMAIL}`,
         ariaLabel: "Email Juan Pablo Conti",
         Icon: Mail,
         external: false,
@@ -56,7 +61,7 @@ const lawyers: Lawyer[] = [
     contacts: [
       {
         label: "Email",
-        href: "mailto:{{EMAIL_NASIF}}",
+        href: `mailto:${CONTACT_EMAIL}`,
         ariaLabel: "Email Mariano Nasif",
         Icon: Mail,
         external: false,
@@ -71,7 +76,7 @@ const lawyers: Lawyer[] = [
     contacts: [
       {
         label: "Email",
-        href: "mailto:{{EMAIL_CONTI}}",
+        href: `mailto:${CONTACT_EMAIL}`,
         ariaLabel: "Email Guillermo Conti",
         Icon: Mail,
         external: false,
@@ -86,7 +91,7 @@ const lawyers: Lawyer[] = [
     contacts: [
       {
         label: "Email",
-        href: "mailto:{{EMAIL_DUARTE}}",
+        href: `mailto:${CONTACT_EMAIL}`,
         ariaLabel: "Email Guillermo Esteban Romeo",
         Icon: Mail,
         external: false,
@@ -500,7 +505,7 @@ export default function LawFirmLanding() {
               <p>Podés enviarnos tu consulta por WhatsApp y una persona del equipo te responderá a la brevedad.</p>
               <div className="flex justify-center">
                 <Button asChild size="lg" className="bg-white text-[#25D366] border border-[#25D366] hover:bg-[#25D366]/10 hover:text-[#1BAE4B]">
-                  <a href="https://wa.me/{{TELEFONO}}" target="_blank" rel="noopener noreferrer" aria-label="Enviar consulta por WhatsApp" className="flex items-center gap-3">
+                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Enviar consulta por WhatsApp" className="flex items-center gap-3">
                     <span className="flex h-5 w-5 items-center justify-center">
                       <svg width="100%" height="100%" viewBox="0 0 360 362" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -593,21 +598,37 @@ export default function LawFirmLanding() {
                   <h3 className="font-serif text-xl font-semibold text-foreground mb-6">Información de contacto</h3>
 
                   <div className="space-y-4">
-                    <a href={`mailto:{{EMAIL_ESTUDIO}}`} className="flex items-start gap-3 text-muted-foreground hover:text-accent transition-colors group">
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-start gap-3 text-muted-foreground hover:text-accent transition-colors group">
                       <Mail className="h-5 w-5 mt-0.5 flex-shrink-0 group-hover:text-accent" />
                       <div>
                         <div className="font-medium text-foreground">Email</div>
-                        <div className="text-sm">{"{{EMAIL_ESTUDIO}}"}</div>
+                        <div className="text-sm">{CONTACT_EMAIL}</div>
                       </div>
                     </a>
 
-                    <a href={`tel:{{TELEFONO}}`} className="flex items-start gap-3 text-muted-foreground hover:text-accent transition-colors group">
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-muted-foreground hover:text-accent transition-colors group">
                       <Phone className="h-5 w-5 mt-0.5 flex-shrink-0 group-hover:text-accent" />
                       <div>
-                        <div className="font-medium text-foreground">Teléfono</div>
-                        <div className="text-sm">{"{{TELEFONO}}"}</div>
+                        <div className="font-medium text-foreground">WhatsApp</div>
+                        <div className="text-sm">{WHATSAPP_DISPLAY_NUMBER}</div>
                       </div>
                     </a>
+
+                    <div className="">
+                      <div className="flex items-start gap-3 text-muted-foreground hover:text-accent transition-colors group">
+                        <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0" />
+                        <a href="https://www.google.com/maps/search/?api=1&query=Maipu%2042%2C%20piso%209%2C%20oficina%20196%2C%20CABA" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors group" aria-label="Ver ubicación en Google Maps">
+                          <div className="font-medium text-foreground">Ubicación</div>
+                          <div className="text-sm">Maipu 42, piso 9, oficina 196, CABA.</div>
+                        </a>
+                      </div>
+                      <div className="mt-4 overflow-hidden rounded-lg border border-border">
+                        <iframe title="Mapa del estudio jurídico en Maipu 42, piso 9, oficina 196, CABA" src="https://www.google.com/maps?q=Maipu%2042%2C%20piso%209%2C%20oficina%20196%2C%20CABA&output=embed" width="100%" height="240" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="w-full" />
+                      </div>
+                      {/*  <a href="https://www.google.com/maps/search/?api=1&query=Maipu%2042%2C%20piso%209%2C%20oficina%20196%2C%20CABA" target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm font-medium text-accent hover:underline" aria-label="Ver ubicación en Google Maps">
+                        Ver en Google Maps
+                      </a> */}
+                    </div>
                   </div>
                 </div>
 
@@ -630,7 +651,7 @@ export default function LawFirmLanding() {
       <SiteFooter onNavigate={handleNavigation} />
 
       {/* WhatsApp Floating Button */}
-      {/* <a href="https://wa.me/{{TELEFONO}}" target="_blank" rel="noopener noreferrer" className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#20BA5A] transition-colors z-40" aria-label="Abrir WhatsApp">
+      {/* <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#20BA5A] transition-colors z-40" aria-label="Abrir WhatsApp">
         <div
           style={{
             width: "32px",
