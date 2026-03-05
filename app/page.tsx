@@ -635,7 +635,7 @@ export default function LawFirmLanding() {
                         <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0" />
                         <a href="https://www.google.com/maps/search/?api=1&query=Maipu%2042%2C%20piso%209%2C%20oficina%20196%2C%20CABA" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors group" aria-label="Ver ubicación en Google Maps">
                           <div className="font-medium text-foreground">Ubicación</div>
-                          <div className="text-sm">Maipu 42, piso 9, oficina 196, CABA.</div>
+                          <div className="text-sm">Maipu 42, Piso 9, Oficina 196, CABA.</div>
                         </a>
                       </div>
                       <div className="mt-4 overflow-hidden rounded-lg border border-border">
