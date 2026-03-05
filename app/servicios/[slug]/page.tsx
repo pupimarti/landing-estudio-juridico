@@ -77,7 +77,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 maxWidth: "90vw",
               }}
             >
-              <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground">Visión general del servicio</h2>
+              <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground">{service.overviewTitle}</h2>
               {service.overview.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
