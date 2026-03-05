@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Mail, ChevronUp, MessageCircle, Linkedin, Instagram, Youtube, MapPin } from "lucide-react";
+import { Phone, Mail, ChevronUp, MessageCircle, Linkedin, Instagram, Youtube, MapPin, Loader2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -159,6 +159,7 @@ export default function LawFirmLanding() {
   });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [loadingIsMobile, setLoadingIsMobile] = useState(true);
@@ -378,8 +379,12 @@ export default function LawFirmLanding() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
 
     if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    setFormStatus("idle");
 
     try {
       const response = await fetch("/api/contact", {
@@ -397,6 +402,8 @@ export default function LawFirmLanding() {
       }
     } catch (error) {
       setFormStatus("error");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -530,53 +537,62 @@ export default function LawFirmLanding() {
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Contact Form */}
               <div>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <Label htmlFor="nombre" className="text-foreground pb-1">
-                      Nombre <span className="text-destructive">*</span>
-                    </Label>
-                    <Input id="nombre" value={formData.nombre} onChange={(e) => setFormData({ ...formData, nombre: e.target.value })} className={formErrors.nombre ? "border-destructive" : ""} aria-required="true" aria-invalid={!!formErrors.nombre} aria-describedby={formErrors.nombre ? "nombre-error" : undefined} />
-                    {formErrors.nombre && (
-                      <p id="nombre-error" className="text-sm text-destructive mt-1">
-                        {formErrors.nombre}
-                      </p>
-                    )}
-                  </div>
+                <form onSubmit={handleSubmit} className="space-y-6" aria-busy={isSubmitting}>
+                  <fieldset disabled={isSubmitting} className={`space-y-6 transition-opacity duration-200 ${isSubmitting ? "opacity-75" : "opacity-100"}`}>
+                    <div>
+                      <Label htmlFor="nombre" className="text-foreground pb-1">
+                        Nombre <span className="text-destructive">*</span>
+                      </Label>
+                      <Input id="nombre" value={formData.nombre} onChange={(e) => setFormData({ ...formData, nombre: e.target.value })} className={formErrors.nombre ? "border-destructive" : ""} aria-required="true" aria-invalid={!!formErrors.nombre} aria-describedby={formErrors.nombre ? "nombre-error" : undefined} />
+                      {formErrors.nombre && (
+                        <p id="nombre-error" className="text-sm text-destructive mt-1">
+                          {formErrors.nombre}
+                        </p>
+                      )}
+                    </div>
 
-                  <div>
-                    <Label htmlFor="email" className="text-foreground pb-1">
-                      Email <span className="text-destructive">*</span>
-                    </Label>
-                    <Input id="email" type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className={formErrors.email ? "border-destructive" : ""} aria-required="true" aria-invalid={!!formErrors.email} aria-describedby={formErrors.email ? "email-error" : undefined} />
-                    {formErrors.email && (
-                      <p id="email-error" className="text-sm text-destructive mt-1">
-                        {formErrors.email}
-                      </p>
-                    )}
-                  </div>
+                    <div>
+                      <Label htmlFor="email" className="text-foreground pb-1">
+                        Email <span className="text-destructive">*</span>
+                      </Label>
+                      <Input id="email" type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className={formErrors.email ? "border-destructive" : ""} aria-required="true" aria-invalid={!!formErrors.email} aria-describedby={formErrors.email ? "email-error" : undefined} />
+                      {formErrors.email && (
+                        <p id="email-error" className="text-sm text-destructive mt-1">
+                          {formErrors.email}
+                        </p>
+                      )}
+                    </div>
 
-                  <div>
-                    <Label htmlFor="telefono" className="text-foreground pb-1">
-                      Teléfono
-                    </Label>
-                    <Input id="telefono" type="tel" value={formData.telefono} onChange={(e) => setFormData({ ...formData, telefono: e.target.value })} />
-                  </div>
+                    <div>
+                      <Label htmlFor="telefono" className="text-foreground pb-1">
+                        Teléfono
+                      </Label>
+                      <Input id="telefono" type="tel" value={formData.telefono} onChange={(e) => setFormData({ ...formData, telefono: e.target.value })} />
+                    </div>
 
-                  <div>
-                    <Label htmlFor="mensaje" className="text-foreground pb-1">
-                      Mensaje <span className="text-destructive">*</span>
-                    </Label>
-                    <Textarea id="mensaje" rows={5} value={formData.mensaje} onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })} className={formErrors.mensaje ? "border-destructive" : ""} aria-required="true" aria-invalid={!!formErrors.mensaje} aria-describedby={formErrors.mensaje ? "mensaje-error" : undefined} />
-                    {formErrors.mensaje && (
-                      <p id="mensaje-error" className="text-sm text-destructive mt-1">
-                        {formErrors.mensaje}
-                      </p>
-                    )}
-                  </div>
+                    <div>
+                      <Label htmlFor="mensaje" className="text-foreground pb-1">
+                        Mensaje <span className="text-destructive">*</span>
+                      </Label>
+                      <Textarea id="mensaje" rows={5} value={formData.mensaje} onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })} className={formErrors.mensaje ? "border-destructive" : ""} aria-required="true" aria-invalid={!!formErrors.mensaje} aria-describedby={formErrors.mensaje ? "mensaje-error" : undefined} />
+                      {formErrors.mensaje && (
+                        <p id="mensaje-error" className="text-sm text-destructive mt-1">
+                          {formErrors.mensaje}
+                        </p>
+                      )}
+                    </div>
 
-                  <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" size="lg">
-                    Enviar consulta
-                  </Button>
+                    <Button type="submit" disabled={isSubmitting} className="w-full bg-accent text-accent-foreground hover:bg-accent/90 disabled:opacity-100 disabled:cursor-not-allowed" size="lg">
+                      {isSubmitting ? (
+                        <span className="inline-flex items-center">
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Enviando consulta...
+                        </span>
+                      ) : (
+                        "Enviar consulta"
+                      )}
+                    </Button>
+                  </fieldset>
 
                   {formStatus === "success" && (
                     <div className="p-4 bg-green-50 border border-green-200 rounded-md text-green-800 text-sm" role="alert" aria-live="polite">
