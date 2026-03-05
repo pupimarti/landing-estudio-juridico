@@ -14,6 +14,7 @@ import { Phone, Mail, ChevronUp, MessageCircle, Linkedin, Instagram, Youtube, Ma
 import type { LucideIcon } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { toast } from "@/hooks/use-toast";
 import { services } from "@/lib/services";
 
 type LawyerContact = {
@@ -158,7 +159,6 @@ export default function LawFirmLanding() {
     mensaje: "",
   });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
-  const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -384,7 +384,6 @@ export default function LawFirmLanding() {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    setFormStatus("idle");
 
     try {
       const response = await fetch("/api/contact", {
@@ -392,16 +391,27 @@ export default function LawFirmLanding() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+      const responseData = await response.json().catch(() => null);
 
       if (response.ok) {
-        setFormStatus("success");
+        toast({
+          title: "Consulta enviada",
+          description: "Gracias por tu consulta. Te responderemos a la brevedad.",
+        });
         setFormData({ nombre: "", email: "", telefono: "", asunto: "", mensaje: "" });
-        setTimeout(() => setFormStatus("idle"), 5000);
       } else {
-        setFormStatus("error");
+        toast({
+          title: "No se pudo enviar la consulta",
+          description: responseData?.error || "Por favor, intentá nuevamente en unos minutos.",
+          variant: "destructive",
+        });
       }
     } catch (error) {
-      setFormStatus("error");
+      toast({
+        title: "No se pudo enviar la consulta",
+        description: "Ocurrió un error inesperado. Por favor, intentá nuevamente.",
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -534,11 +544,11 @@ export default function LawFirmLanding() {
               </div>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-12">
+            <div className="grid gap-12 lg:grid-cols-2">
               {/* Contact Form */}
-              <div>
-                <form onSubmit={handleSubmit} className="space-y-6" aria-busy={isSubmitting}>
-                  <fieldset disabled={isSubmitting} className={`space-y-6 transition-opacity duration-200 ${isSubmitting ? "opacity-75" : "opacity-100"}`}>
+              <div className="lg:flex">
+                <form onSubmit={handleSubmit} className="space-y-6 lg:flex lg:min-h-full lg:flex-1 lg:flex-col" aria-busy={isSubmitting}>
+                  <fieldset disabled={isSubmitting} className={`space-y-6 transition-opacity duration-200 lg:flex lg:flex-1 lg:flex-col lg:justify-between ${isSubmitting ? "opacity-75" : "opacity-100"}`}>
                     <div>
                       <Label htmlFor="nombre" className="text-foreground pb-1">
                         Nombre <span className="text-destructive">*</span>
@@ -574,7 +584,7 @@ export default function LawFirmLanding() {
                       <Label htmlFor="mensaje" className="text-foreground pb-1">
                         Mensaje <span className="text-destructive">*</span>
                       </Label>
-                      <Textarea id="mensaje" rows={5} value={formData.mensaje} onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })} className={formErrors.mensaje ? "border-destructive" : ""} aria-required="true" aria-invalid={!!formErrors.mensaje} aria-describedby={formErrors.mensaje ? "mensaje-error" : undefined} />
+                      <Textarea id="mensaje" rows={10} value={formData.mensaje} onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })} className={formErrors.mensaje ? "border-destructive" : ""} aria-required="true" aria-invalid={!!formErrors.mensaje} aria-describedby={formErrors.mensaje ? "mensaje-error" : undefined} />
                       {formErrors.mensaje && (
                         <p id="mensaje-error" className="text-sm text-destructive mt-1">
                           {formErrors.mensaje}
@@ -593,18 +603,6 @@ export default function LawFirmLanding() {
                       )}
                     </Button>
                   </fieldset>
-
-                  {formStatus === "success" && (
-                    <div className="p-4 bg-green-50 border border-green-200 rounded-md text-green-800 text-sm" role="alert" aria-live="polite">
-                      ¡Gracias por tu consulta! Te responderemos a la brevedad.
-                    </div>
-                  )}
-
-                  {formStatus === "error" && (
-                    <div className="p-4 bg-red-50 border border-red-200 rounded-md text-red-800 text-sm" role="alert" aria-live="polite">
-                      Hubo un error al enviar tu consulta. Por favor, intenta nuevamente.
-                    </div>
-                  )}
                 </form>
               </div>
 
