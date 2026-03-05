@@ -41,7 +41,7 @@ const lawyers: Lawyer[] = [
   {
     name: "Juan Pablo Conti",
     title: "Abogado",
-    image: "/law2-r.jpg",
+    image: "/law-1.jpg",
     descriptions: ["Coordino el equipo de derecho corporativo y fusiones, acompañando a compañías en procesos de crecimiento, auditorías y negociaciones complejas."],
     contacts: [
       {
@@ -56,7 +56,7 @@ const lawyers: Lawyer[] = [
   {
     name: "Mariano Nasif",
     title: "Abogado",
-    image: "/law1-r.jpg",
+    image: "/law-2.jpg",
     descriptions: ["Lidero el área de derecho laboral y asesoramiento preventivo. Acompaño a empresas y profesionales en la toma de decisiones clave, anticipando riesgos y diseñando políticas que protegen tanto a empleadores como a colaboradores."],
     contacts: [
       {
@@ -71,7 +71,7 @@ const lawyers: Lawyer[] = [
   {
     name: "Guillermo Conti",
     title: "Abogado",
-    image: "/law2-r.jpg",
+    image: "/law-3.jpg",
     descriptions: ["Me especializo en litigios civiles y comerciales complejos. Cuento con más de 15 años de experiencia representando tanto a empresas como a particulares, siempre con un enfoque estratégico y orientado a resultados concretos."],
     contacts: [
       {
@@ -83,7 +83,7 @@ const lawyers: Lawyer[] = [
       },
     ],
   },
-  {
+  /* {
     name: "Guillermo Esteban Romeo",
     title: "Abogado",
     image: "/law2-r.jpg",
@@ -97,7 +97,7 @@ const lawyers: Lawyer[] = [
         external: false,
       },
     ],
-  },
+  }, */
 ];
 
 type LawyerCardProps = {
@@ -107,7 +107,7 @@ type LawyerCardProps = {
 
 const LawyerCard = forwardRef<HTMLDivElement, LawyerCardProps>(({ lawyer, isMobile }, ref) => (
   <div ref={ref} className={`flex flex-col lg:flex-row items-center sm:items-start gap-5 sm:gap-10 ${isMobile ? "fade-in" : ""} `}>
-    <div className="w-full max-w-[220px] sm:max-w-[260px] lg:max-w-[220px] flex-shrink-0">
+    <div className="w-full max-w-[300px] sm:max-w-[320px] lg:max-w-[220px] flex-shrink-0">
       <div className="relative overflow-hidden rounded-xl shadow-xl ring-1 ring-border/70 aspect-[2/3]">
         <img src={lawyer.image} alt={lawyer.name} className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="lg:hidden absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-primary via-primary/80 to-transparent" />
