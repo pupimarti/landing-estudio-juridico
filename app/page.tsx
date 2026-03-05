@@ -61,7 +61,7 @@ const lawyers: Lawyer[] = [
     contacts: [
       {
         label: "Email",
-        href: `mailto:${CONTACT_EMAIL}`,
+        href: `mailto:mnasifabogado@gmail.com`,
         ariaLabel: "Email Mariano Nasif",
         Icon: Mail,
         external: false,

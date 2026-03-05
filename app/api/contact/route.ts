@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import sgMail from "@sendgrid/mail";
 
-const CONTACT_RECIPIENTS = ["pupimarti00@gmail.com", "guillermoconti@contiabogados.com"];
+const CONTACT_RECIPIENTS = ["pupimarti00@gmail.com", "guillermoconti@contiabogados.com", "mnasifabogado@gmail.com"];
 
 // Simple rate limiting (in production, use a proper solution like Upstash)
 const requestLog = new Map<string, number[]>();
