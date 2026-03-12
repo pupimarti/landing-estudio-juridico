@@ -43,7 +43,7 @@ const lawyers: Lawyer[] = [
     name: "Juan Pablo Conti",
     title: "Abogado",
     image: "/law-1.jpg",
-    descriptions: ["Coordino el equipo de derecho corporativo y fusiones, acompañando a compañías en procesos de crecimiento, auditorías y negociaciones complejas."],
+    descriptions: ["Abogado egresado de la Universidad de Buenos Aires, con posgrado en asesoramiento integral de empresas y diplomatura en Derecho Administrativo. Se especializa en derecho administrativo empresarial y derecho de seguros."],
     contacts: [
       {
         label: "Email",
@@ -58,7 +58,7 @@ const lawyers: Lawyer[] = [
     name: "Mariano Nasif",
     title: "Abogado",
     image: "/law-2.jpg",
-    descriptions: ["Lidero el área de derecho laboral y asesoramiento preventivo. Acompaño a empresas y profesionales en la toma de decisiones clave, anticipando riesgos y diseñando políticas que protegen tanto a empleadores como a colaboradores."],
+    descriptions: ["Abogado egresado de la Universidad de Buenos Aires, con orientación en Derecho Penal. Se especializa en derecho de la salud, promoviendo acciones de amparo y medidas cautelares, así como en derecho sucesorio y planificación patrimonial."],
     contacts: [
       {
         label: "Email",
@@ -73,7 +73,7 @@ const lawyers: Lawyer[] = [
     name: "Guillermo Conti",
     title: "Abogado",
     image: "/law-3.jpg",
-    descriptions: ["Me especializo en litigios civiles y comerciales complejos. Cuento con más de 15 años de experiencia representando tanto a empresas como a particulares, siempre con un enfoque estratégico y orientado a resultados concretos."],
+    descriptions: ["Abogado egresado de la Universidad de Buenos Aires, con orientación en Derecho Empresarial. Se especializa en derecho comercial y derecho del consumidor, con práctica orientada al litigio en conflictos contractuales, ejecuciones y reclamos patrimoniales."],
     contacts: [
       {
         label: "Email",
@@ -84,11 +84,11 @@ const lawyers: Lawyer[] = [
       },
     ],
   },
-  /* {
+  {
     name: "Guillermo Esteban Romeo",
     title: "Abogado",
-    image: "/law2-r.jpg",
-    descriptions: ["Coordino el equipo de derecho corporativo y fusiones, acompañando a compañías en procesos de crecimiento, auditorías y negociaciones complejas."],
+    image: "/law-4.jpeg",
+    descriptions: ["Abogado egresado de la Universidad Católica Argentina. Se especializa en propiedad intelectual, registro y protección de marcas, así como en soluciones vinculadas al ámbito del Legal Tech y derecho laboral."],
     contacts: [
       {
         label: "Email",
@@ -98,7 +98,7 @@ const lawyers: Lawyer[] = [
         external: false,
       },
     ],
-  }, */
+  },
 ];
 
 type LawyerCardProps = {
