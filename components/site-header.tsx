@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Scale } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export const navigationItems = [
   { id: "inicio", label: "Inicio" },
@@ -80,10 +80,8 @@ export function SiteHeader({ activeSection, onNavigate, isMobile }: SiteHeaderPr
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center justify-between md:hidden w-full">
-            <button onClick={() => handleNavigation("inicio")} className="flex items-center gap-2 text-primary-foreground hover:opacity-80 transition-opacity" aria-label="Ir a inicio">
-              <Scale className="h-8 w-8" />
-
-              <span className="font-serif text-md font-bold">Estudio Conti & Nasif</span>
+            <button onClick={() => handleNavigation("inicio")} className="flex items-center text-primary-foreground hover:opacity-80 transition-opacity" aria-label="Ir a inicio">
+              <Image src="/logo-letras.png" alt="Estudio Conti & Nasif" width={150} height={40} className="h-8 w-auto" priority />
             </button>
 
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -112,9 +110,9 @@ export function SiteHeader({ activeSection, onNavigate, isMobile }: SiteHeaderPr
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <button onClick={() => handleNavigation("inicio")} className="flex items-center gap-2 text-primary-foreground hover:opacity-80 transition-opacity" aria-label="Ir a inicio">
-              <Scale className="h-8 w-8" />
-              <span className="font-serif text-xl font-bold ">{"Estudio Conti & Nasif"}</span>
+            <button onClick={() => handleNavigation("inicio")} className="flex items-center text-primary-foreground hover:opacity-80 transition-opacity" aria-label="Ir a inicio">
+              <Image src="/logo-letras.png" alt="Estudio Conti & Nasif" width={180} height={48} className="h-10 w-auto" priority />
+              <span className="font-serif text-lg font-bold ">{"Estudio Conti & Nasif"}</span>
             </button>
           </div>
 

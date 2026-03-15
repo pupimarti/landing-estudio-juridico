@@ -22,6 +22,7 @@ const CONTACT_EMAIL = "guillermoconti@contiabogados.com";
 const CONTACT_PHONE = "+54 9 11 2604-4758";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://landing-estudio-juridico-eta.vercel.app"),
   title: "Estudio Conti & Nasif",
   description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más. Protegemos tus intereses con soluciones concretas y trato humano en {{CIUDAD/REGIÓN}}.",
   keywords: "abogado, estudio jurídico, asesoría legal, derecho de salud, amparos, derecho laboral, derecho del consumidor, derecho de familia, {{CIUDAD/REGIÓN}}",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     },
     {
       rel: "image_src",
-      url: "/logo.png",
+      url: "/logo-share-1200x630.jpeg",
     },
   ],
   publisher: "Estudio Conti & Nasif",
@@ -55,7 +56,10 @@ export const metadata: Metadata = {
     url: "https://landing-estudio-juridico-eta.vercel.app",
     images: [
       {
-        url: "https://landing-estudio-juridico-eta.vercel.app/logo.png",
+        url: "/logo-share-1200x630.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Estudio Conti & Nasif",
       },
     ],
   },
@@ -65,8 +69,8 @@ export const metadata: Metadata = {
     description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más.",
     images: [
       {
-        url: "/logo.png",
-        alt: "Estudio Conti & Nasif Logo",
+        url: "/logo-share-1200x630.jpeg",
+        alt: "Estudio Conti & Nasif",
       },
     ],
   },
@@ -121,7 +125,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="image_src" href="/logo.png" />
+        <link rel="image_src" href="/logo-share-1200x630.jpeg" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body className="font-sans antialiased">
