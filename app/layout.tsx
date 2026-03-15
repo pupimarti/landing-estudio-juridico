@@ -3,6 +3,18 @@ import type { Metadata } from "next";
 import { Inter, Merriweather } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "@/components/ui/toaster";
+import {
+  absoluteUrl,
+  CONTACT_EMAIL,
+  CONTACT_PHONE_URI,
+  DEFAULT_OG_IMAGE,
+  OFFICE_ADDRESS,
+  OFFICE_MAPS_URL,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+  WHATSAPP_URL,
+} from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,27 +30,31 @@ const merriweather = Merriweather({
   display: "swap",
 });
 
-const CONTACT_EMAIL = "guillermoconti@contiabogados.com";
-const CONTACT_PHONE = "+54 9 11 2604-4758";
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://landing-estudio-juridico-eta.vercel.app"),
-  title: "Estudio Conti & Nasif",
-  description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más. Protegemos tus intereses con soluciones concretas y trato humano en {{CIUDAD/REGIÓN}}.",
-  keywords: "abogado, estudio jurídico, asesoría legal, derecho de salud, amparos, derecho laboral, derecho del consumidor, derecho de familia, {{CIUDAD/REGIÓN}}",
-  authors: [{ name: "Estudio Conti & Nasif" }],
-  creator: "Estudio Conti & Nasif",
-  icons: [
-    {
-      rel: "icon",
-      url: "/favicon.ico",
-    },
-    {
-      rel: "image_src",
-      url: "/logo-share-1200x630.jpeg",
-    },
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "estudio juridico en CABA",
+    "abogado en CABA",
+    "amparos de salud",
+    "abogado laboral",
+    "abogado consumidor",
+    "sucesiones",
+    "derecho civil",
+    "abogados en Buenos Aires",
   ],
-  publisher: "Estudio Conti & Nasif",
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  applicationName: SITE_NAME,
+  icons: {
+    icon: [{ url: "/favicon.ico" }],
+    apple: [{ url: "/logo.png" }],
+  },
+  publisher: SITE_NAME,
   formatDetection: {
     email: false,
     address: false,
@@ -48,29 +64,29 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Estudio Conti & Nasif",
-    description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más. Protegemos tus intereses con soluciones concretas y trato humano.",
-    siteName: "Estudio Conti & Nasif",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    siteName: SITE_NAME,
     locale: "es_AR",
     type: "website",
-    url: "https://landing-estudio-juridico-eta.vercel.app",
+    url: SITE_URL,
     images: [
       {
-        url: "/logo-share-1200x630.jpeg",
+        url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Estudio Conti & Nasif",
+        alt: SITE_NAME,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Estudio Conti & Nasif",
-    description: "Estudio jurídico especializado en derecho de salud, laboral, consumidor, familia y más.",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
     images: [
       {
-        url: "/logo-share-1200x630.jpeg",
-        alt: "Estudio Conti & Nasif",
+        url: DEFAULT_OG_IMAGE,
+        alt: SITE_NAME,
       },
     ],
   },
@@ -85,7 +101,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  generator: "v0.app",
 };
 
 export default function RootLayout({
@@ -96,19 +111,39 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LegalService",
-    name: "Estudio Conti & Nasif",
-    description: "Estudio jurídico especializado en asesoría legal clara y estratégica",
-    telephone: CONTACT_PHONE,
+    "@id": absoluteUrl("/#legal-service"),
+    name: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    image: absoluteUrl(DEFAULT_OG_IMAGE),
+    telephone: CONTACT_PHONE_URI,
     email: CONTACT_EMAIL,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "{{DIRECCION}}",
-      addressLocality: "{{CIUDAD/REGIÓN}}",
-      addressRegion: "{{CIUDAD/REGIÓN}}",
-      addressCountry: "AR",
+      ...OFFICE_ADDRESS,
     },
-    areaServed: "Argentina",
+    areaServed: [
+      {
+        "@type": "City",
+        name: "CABA",
+      },
+      {
+        "@type": "Country",
+        name: "Argentina",
+      },
+    ],
     priceRange: "$$",
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        telephone: CONTACT_PHONE_URI,
+        email: CONTACT_EMAIL,
+        areaServed: "AR",
+        availableLanguage: ["es"],
+      },
+    ],
+    sameAs: [WHATSAPP_URL, OFFICE_MAPS_URL],
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -122,10 +157,8 @@ export default function RootLayout({
   return (
     <html lang="es-AR" className={`${inter.variable} ${merriweather.variable}`}>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="image_src" href="/logo-share-1200x630.jpeg" />
+        <link rel="image_src" href={DEFAULT_OG_IMAGE} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body className="font-sans antialiased">

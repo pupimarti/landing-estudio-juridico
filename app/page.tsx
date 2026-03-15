@@ -4,6 +4,7 @@ import type React from "react";
 
 import { animateScroll as scroll } from "react-scroll";
 import { useState, useEffect, useRef, forwardRef } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +17,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { toast } from "@/hooks/use-toast";
 import { services } from "@/lib/services";
+import { CONTACT_EMAIL, OFFICE_MAPS_URL, WHATSAPP_URL } from "@/lib/site";
 
 type LawyerContact = {
   label: string;
@@ -33,10 +35,7 @@ type Lawyer = {
   contacts: LawyerContact[];
 };
 
-const CONTACT_EMAIL = "guillermoconti@contiabogados.com";
-const WHATSAPP_NUMBER = "5491126044758";
 const WHATSAPP_DISPLAY_NUMBER = "+54 9 11 2604-4758";
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const lawyers: Lawyer[] = [
   {
@@ -310,7 +309,9 @@ export default function LawFirmLanding() {
     scrollToSection(sectionId);
   };
 
-  const handleServiceDetail = (slug: string) => {
+  const handleServiceDetail = (slug: string, event?: React.MouseEvent<HTMLAnchorElement>) => {
+    event?.preventDefault();
+
     if (typeof window !== "undefined") {
       // Save current scroll position
       sessionStorage.setItem("servicesScrollPosition", window.scrollY.toString());
@@ -500,8 +501,10 @@ export default function LawFirmLanding() {
                       <h3 className="font-serif text-xl font-semibold text-foreground mb-3 group-hover:text-accent transition-colors">{service.title}</h3>
                       <p className="text-muted-foreground leading-relaxed mb-4 flex-grow text-sm">{service.shortDescription}</p>
                       <p className="text-sm font-medium text-accent mb-4">{service.footer}</p>
-                      <Button variant="outline" size="sm" onClick={() => handleServiceDetail(service.slug)} className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground cursor-pointer">
-                        Más información
+                      <Button asChild variant="outline" size="sm" className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground cursor-pointer">
+                        <Link href={`/servicios/${service.slug}`} onClick={(event) => handleServiceDetail(service.slug, event)}>
+                          Más información
+                        </Link>
                       </Button>
                     </CardContent>
                   </Card>
@@ -513,8 +516,7 @@ export default function LawFirmLanding() {
       </section>
 
       {/* Contacto Section */}
-      <div id="contacto" />
-      <section ref={contactoRef} className={`pt-30 pb-20 px-4 sm:px-6 lg:px-8 bg-white ${isMobile ? "" : "fade-in"}`}>
+      <section id="contacto" ref={contactoRef} className={`pt-30 pb-20 px-4 sm:px-6 lg:px-8 bg-white ${isMobile ? "" : "fade-in"}`}>
         <div className="max-w-7xl mx-auto">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-6 text-center">Contacto</h2>
@@ -631,7 +633,7 @@ export default function LawFirmLanding() {
                     <div className="">
                       <div className="flex items-start gap-3 text-muted-foreground hover:text-accent transition-colors group">
                         <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                        <a href="https://www.google.com/maps/search/?api=1&query=Maipu%2042%2C%20piso%209%2C%20oficina%20196%2C%20CABA" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors group" aria-label="Ver ubicación en Google Maps">
+                        <a href={OFFICE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors group" aria-label="Ver ubicación en Google Maps">
                           <div className="font-medium text-foreground">Ubicación</div>
                           <div className="text-sm">Maipu 42, Piso 9, Oficina 196, CABA.</div>
                         </a>

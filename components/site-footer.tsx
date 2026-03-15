@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Scale } from "lucide-react";
 import { navigationItems } from "@/components/site-header";
 
@@ -10,13 +9,11 @@ interface SiteFooterProps {
 }
 
 export function SiteFooter({ onNavigate }: SiteFooterProps) {
-  const router = useRouter();
-
-  const handleNavigate = (sectionId: string) => {
+  const getSectionHref = (sectionId: string) => (sectionId === "inicio" ? "/" : `/#${sectionId}`);
+  const handleClick = (sectionId: string, event: React.MouseEvent<HTMLAnchorElement>) => {
     if (onNavigate) {
+      event.preventDefault();
       onNavigate(sectionId);
-    } else {
-      router.push(`/#${sectionId}`);
     }
   };
 
@@ -39,9 +36,9 @@ export function SiteFooter({ onNavigate }: SiteFooterProps) {
             <ul className="space-y-2 text-sm">
               {navigationItems.map((item) => (
                 <li key={item.id}>
-                  <button onClick={() => handleNavigate(item.id)} className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  <Link href={getSectionHref(item.id)} onClick={(event) => handleClick(item.id, event)} className="text-primary-foreground/80 hover:text-accent transition-colors">
                     {item.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>

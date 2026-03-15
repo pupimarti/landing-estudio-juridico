@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { services, servicesMap } from "@/lib/services";
+import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_NAME } from "@/lib/site";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
@@ -33,8 +34,31 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
 
   return {
-    title: `${service.title} | Estudio Conti & Nasif`,
+    title: service.title,
     description: service.metaDescription,
+    alternates: {
+      canonical: `/servicios/${service.slug}`,
+    },
+    openGraph: {
+      title: `${service.title} | ${SITE_NAME}`,
+      description: service.metaDescription,
+      type: "article",
+      url: absoluteUrl(`/servicios/${service.slug}`),
+      images: [
+        {
+          url: DEFAULT_OG_IMAGE,
+          width: 1200,
+          height: 630,
+          alt: `${service.title} | ${SITE_NAME}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.title} | ${SITE_NAME}`,
+      description: service.metaDescription,
+      images: [DEFAULT_OG_IMAGE],
+    },
   };
 }
 
@@ -46,8 +70,27 @@ export default async function ServicePage({ params }: ServicePageProps) {
     notFound();
   }
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.metaDescription,
+    serviceType: service.title,
+    provider: {
+      "@type": "LegalService",
+      name: SITE_NAME,
+      url: absoluteUrl("/"),
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Argentina",
+    },
+    url: absoluteUrl(`/servicios/${service.slug}`),
+  };
+
   return (
     <div className=" flex flex-col">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <SiteHeader activeSection="servicios" />
 
       <main className="flex-1">

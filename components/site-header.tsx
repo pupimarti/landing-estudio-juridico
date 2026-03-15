@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -37,7 +37,6 @@ function AnimatedHamburger({ isOpen, onClick }: AnimatedHamburgerProps) {
 }
 
 export function SiteHeader({ activeSection, onNavigate, isMobile }: SiteHeaderProps) {
-  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [navbarVisible, setNavbarVisible] = useState(() => navbarAnimationPlayed);
@@ -64,12 +63,12 @@ export function SiteHeader({ activeSection, onNavigate, isMobile }: SiteHeaderPr
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavigation = (sectionId: string) => {
+  const getSectionHref = (sectionId: string) => (sectionId === "inicio" ? "/" : `/#${sectionId}`);
+
+  const handleNavigation = (sectionId: string, event?: React.MouseEvent<HTMLAnchorElement>) => {
     if (onNavigate) {
+      event?.preventDefault();
       onNavigate(sectionId);
-    } else {
-      const href = sectionId === "inicio" ? "/" : `/#${sectionId}`;
-      router.push(href);
     }
 
     setIsMobileMenuOpen(false);
@@ -80,9 +79,14 @@ export function SiteHeader({ activeSection, onNavigate, isMobile }: SiteHeaderPr
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center justify-between md:hidden w-full">
-            <button onClick={() => handleNavigation("inicio")} className="flex items-center text-primary-foreground hover:opacity-80 transition-opacity" aria-label="Ir a inicio">
+            <Link
+              href="/"
+              onClick={(event) => handleNavigation("inicio", event)}
+              className="flex items-center text-primary-foreground hover:opacity-80 transition-opacity"
+              aria-label="Ir a inicio"
+            >
               <Image src="/logo-letras.png" alt="Estudio Conti & Nasif" width={150} height={40} className="h-8 w-auto" priority />
-            </button>
+            </Link>
 
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -96,12 +100,19 @@ export function SiteHeader({ activeSection, onNavigate, isMobile }: SiteHeaderPr
                 <div className="p-6">
                   <nav className="flex flex-col gap-6" aria-label="Navegación móvil">
                     {navigationItems.map((item) => (
-                      <button key={item.id} type="button" onClick={() => handleNavigation(item.id)} className={`text-left py-3 px-2 -mx-2 rounded-lg transition-colors text-lg font-medium ${activeSection === item.id ? "bg-accent/10 text-accent" : "text-primary-foreground/90 hover:bg-primary-foreground/5"}`}>
+                      <Link
+                        key={item.id}
+                        href={getSectionHref(item.id)}
+                        onClick={(event) => handleNavigation(item.id, event)}
+                        className={`text-left py-3 px-2 -mx-2 rounded-lg transition-colors text-lg font-medium ${activeSection === item.id ? "bg-accent/10 text-accent" : "text-primary-foreground/90 hover:bg-primary-foreground/5"}`}
+                      >
                         {item.label}
-                      </button>
+                      </Link>
                     ))}
-                    <Button size="lg" onClick={() => handleNavigation("contacto")} className="w-full mt-4 bg-accent text-accent-foreground hover:bg-accent/90 h-12 text-base font-semibold">
-                      Solicitar consulta
+                    <Button asChild size="lg" className="w-full mt-4 bg-accent text-accent-foreground hover:bg-accent/90 h-12 text-base font-semibold">
+                      <Link href="/#contacto" onClick={(event) => handleNavigation("contacto", event)}>
+                        Solicitar consulta
+                      </Link>
                     </Button>
                   </nav>
                 </div>
@@ -110,18 +121,24 @@ export function SiteHeader({ activeSection, onNavigate, isMobile }: SiteHeaderPr
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <button onClick={() => handleNavigation("inicio")} className="flex items-center text-primary-foreground hover:opacity-80 transition-opacity" aria-label="Ir a inicio">
+            <Link href="/" onClick={(event) => handleNavigation("inicio", event)} className="flex items-center text-primary-foreground hover:opacity-80 transition-opacity" aria-label="Ir a inicio">
               <Image src="/logo-letras.png" alt="Estudio Conti & Nasif" width={180} height={48} className="h-10 w-auto" priority />
               <span className="font-serif text-lg font-bold ">{"Estudio Conti & Nasif"}</span>
-            </button>
+            </Link>
           </div>
 
           <nav className="hidden md:flex items-center gap-8" aria-label="Navegación principal">
             {navigationItems.map((item) => (
-              <button key={item.id} onClick={() => handleNavigation(item.id)} className={`text-sm font-medium transition-colors relative ${activeSection === item.id ? "text-accent" : "text-primary-foreground hover:text-accent"}`} aria-current={activeSection === item.id ? "page" : undefined}>
+              <Link
+                key={item.id}
+                href={getSectionHref(item.id)}
+                onClick={(event) => handleNavigation(item.id, event)}
+                className={`text-sm font-medium transition-colors relative ${activeSection === item.id ? "text-accent" : "text-primary-foreground hover:text-accent"}`}
+                aria-current={activeSection === item.id ? "page" : undefined}
+              >
                 {item.label}
                 {activeSection === item.id && <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent" />}
-              </button>
+              </Link>
             ))}
           </nav>
         </div>
